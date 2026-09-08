@@ -1,19 +1,45 @@
-# Dashboard Perumahan Negeri Selangor — V2
+# Dashboard Perumahan Negeri Selangor V3
 
-Dashboard statik untuk GitHub Pages berdasarkan dataset `PERUMAHAN_NEGERI_SELANGOR` (GTS 2025).
+Dashboard statik untuk GitHub Pages menggunakan dataset **PERUMAHAN_NEGERI_SELANGOR (GTS 2025)**.
 
-## Kandungan
-- Statistik penuh 1,083,443 rekod melalui `summary.json`
-- Penapis Daerah, PBT dan Kategori
-- KPI, carta analisis dan jadual PBT
-- Peta Leaflet dengan 18,000 poligon sampel sebenar yang dipilih secara berstrata daripada 12 PBT
-- Popup maklumat kategori, subkategori, daerah, PBT dan keluasan lot
-- Peta dan semua analisis diselaraskan dengan penapis
+## Apa yang baharu dalam V3
 
-## Kenapa peta menggunakan sampel?
-Dataset asal mempunyai lebih 1 juta poligon. Memuatkan semua poligon sebagai GeoJSON pada GitHub Pages akan menyebabkan muatan sangat besar dan browser perlahan. Statistik dashboard tetap menggunakan keseluruhan rekod; hanya visualisasi lot pada peta menggunakan sampel berstrata 18,000 poligon sebenar.
+- Statistik penuh: **1,083,443 rekod**.
+- Enjin peta **MapLibre GL / WebGL**.
+- Overview seluruh negeri menggunakan 18,000 poligon berstrata.
+- Semua lot disediakan sebagai **12 fail vektor berasingan mengikut PBT**.
+- Apabila satu PBT dipilih, dashboard memuatkan **semua poligon PBT tersebut**, bukan sampel.
+- Fail peta dimampatkan menggunakan GZIP supaya sesuai untuk hosting statik GitHub Pages.
+- Geometri web disederhanakan pada toleransi kira-kira **0.75 meter** dan koordinat 6 tempat perpuluhan untuk mengurangkan saiz tanpa mengubah statistik asal.
+- Filter Daerah, PBT dan Kategori menyelaras KPI, carta, jadual dan peta.
+- Klik poligon untuk melihat kategori, subkategori, daerah, PBT, keluasan dan nombor lot jika tersedia.
 
-## Deploy GitHub Pages
-Upload semua fail/folder ini ke root repository, kemudian `Settings > Pages > Deploy from a branch > main > /(root)`.
+## Struktur wajib di GitHub
 
-Jangan ubah struktur folder `data/` kerana `data/housing_sample.geojson` digunakan oleh peta.
+```
+index.html
+styles.css
+app.js
+summary.json
+README.md
+data/
+  summary.json
+  manifest.json
+  overview.geojson.gz
+  pbt/
+    210301.geojson.gz
+    ...
+    210312.geojson.gz
+```
+
+Jangan ubah struktur folder `data/pbt` kerana `manifest.json` merujuk laluan tersebut.
+
+## GitHub Pages
+
+Repository > Settings > Pages > Deploy from a branch > `main` > `/(root)` > Save.
+
+Kemudian buka laman GitHub Pages repository dan buat hard refresh (`Ctrl + Shift + R`).
+
+## Nota prestasi
+
+GitHub Pages ialah hosting statik. V3 tidak cuba memuatkan kesemua 1.08 juta poligon pada masa yang sama. Ia memuatkan data penuh **satu PBT pada satu masa**, yang jauh lebih stabil untuk browser dan masih membolehkan keseluruhan dataset dicapai.

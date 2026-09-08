@@ -3,32 +3,35 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Dashboard Perumahan Negeri Selangor</title>
-  <meta name="description" content="Dashboard interaktif Perumahan Negeri Selangor berasaskan dataset 2025." />
+  <title>Dashboard Perumahan Negeri Selangor V3</title>
+  <meta name="description" content="Dashboard interaktif Perumahan Negeri Selangor GTS 2025 dengan pemuatan poligon penuh mengikut PBT." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link href="https://unpkg.com/maplibre-gl@5.6.2/dist/maplibre-gl.css" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div id="loadingScreen" class="loading-screen"><div class="loader"></div><strong>Memuatkan Dashboard Perumahan Selangor</strong><span>Data statistik dan poligon peta sedang disediakan…</span></div>
+  <div id="loadingScreen" class="loading-screen"><div class="loader"></div><strong>Memuatkan Dashboard Perumahan Selangor V3</strong><span>Menyiapkan statistik dan enjin peta WebGL…</span></div>
+  <div id="errorBanner" class="error-banner hidden"></div>
+
   <div class="app-shell">
     <aside class="sidebar">
-      <div class="brand"><div class="brand-mark">S</div><div><div class="brand-title">Perumahan Selangor</div><div class="brand-sub">GTS 2025</div></div></div>
+      <div class="brand"><div class="brand-mark">S</div><div><div class="brand-title">Perumahan Selangor</div><div class="brand-sub">GTS 2025 · V3</div></div></div>
       <nav class="nav">
         <button class="nav-item active" data-target="overview">⌂ <span>Ringkasan</span></button>
-        <button class="nav-item" data-target="map-section">◉ <span>Peta</span></button>
+        <button class="nav-item" data-target="map-section">◉ <span>Peta Lot</span></button>
         <button class="nav-item" data-target="analysis">▥ <span>Analisis</span></button>
         <button class="nav-item" data-target="table-section">≡ <span>Jadual</span></button>
       </nav>
-      <div class="sidebar-foot">Dashboard GitHub Pages<br><b>Negeri Selangor</b></div>
+      <div class="engine-card"><span>ENJIN V3</span><b>Chunked WebGL</b><small>1,083,443 poligon tersedia</small></div>
+      <div class="sidebar-foot">Dashboard statik GitHub Pages<br><b>Negeri Selangor</b></div>
     </aside>
 
     <main class="main">
       <header class="topbar">
         <div><h1>Dashboard Perumahan Negeri Selangor</h1><p>Analisis spatial & statistik data perumahan GTS 2025</p></div>
-        <div class="year-pill">TAHUN DATA <strong>2025</strong></div>
+        <div class="top-pills"><div class="year-pill">TAHUN DATA <strong>2025</strong></div><div class="version-pill">V3</div></div>
       </header>
 
       <section class="filterbar">
@@ -47,10 +50,17 @@
 
       <section class="two-col map-layout" id="map-section">
         <article class="panel map-panel">
-          <div class="panel-head"><div><h2>Peta Perumahan Negeri Selangor</h2><p>Poligon sampel sebenar daripada dataset · klik poligon untuk maklumat</p></div><span class="live-dot">● DATA 2025</span></div>
-          <div class="map-toolbar"><span id="mapStatus">Memuatkan poligon…</span><label><input type="checkbox" id="polygonToggle" checked> Papar poligon</label></div>
+          <div class="panel-head">
+            <div><h2>Peta Lot Perumahan Negeri Selangor</h2><p>WebGL · overview seluruh negeri · poligon penuh dimuatkan mengikut PBT</p></div>
+            <span class="live-dot">● DATA 2025</span>
+          </div>
+          <div class="map-toolbar">
+            <div><b id="mapMode">Overview</b><span id="mapStatus">Memuatkan peta…</span></div>
+            <div class="toolbar-actions"><button id="reloadFullBtn" class="map-btn" disabled>Muat Lot Penuh</button><label class="toggle"><input type="checkbox" id="polygonToggle" checked><span>Papar poligon</span></label></div>
+          </div>
+          <div class="progress-wrap hidden" id="mapProgress"><div id="mapProgressBar"></div></div>
           <div id="map"></div>
-          <div class="map-note"><b>Nota prestasi:</b> statistik menggunakan keseluruhan 1,083,443 rekod. Peta memaparkan sampel berstrata 18,000 poligon sebenar supaya GitHub Pages kekal pantas.</div>
+          <div class="map-note"><b>V3:</b> Statistik menggunakan semua 1,083,443 rekod. Peta overview menggunakan 18,000 lot berstrata; apabila satu PBT dipilih, fail vektor PBT tersebut dimuatkan dan semua rekod PBT dipaparkan. Geometri web dipermudah ±0.75 m untuk prestasi.</div>
         </article>
         <article class="panel">
           <div class="panel-head"><div><h2>Komposisi Kategori</h2><p>Peratus mengikut jenis perumahan</p></div></div>
@@ -65,13 +75,13 @@
 
       <section id="table-section" class="panel table-panel">
         <div class="panel-head"><div><h2>Prestasi Mengikut PBT</h2><p>Jumlah rekod dan keluasan perumahan</p></div><input id="tableSearch" class="search" placeholder="Cari PBT..." /></div>
-        <div class="table-scroll"><table><thead><tr><th>PBT</th><th>Kod</th><th>Jumlah Rekod</th><th>Keluasan (ha)</th><th>% Rekod</th></tr></thead><tbody id="pbtTable"></tbody></table></div>
+        <div class="table-scroll"><table><thead><tr><th>PBT</th><th>Kod</th><th>Jumlah Rekod</th><th>Keluasan (ha)</th><th>% Rekod</th><th>Peta</th></tr></thead><tbody id="pbtTable"></tbody></table></div>
       </section>
-      <footer>Sumber data: <b>PERUMAHAN_NEGERI_SELANGOR</b> · Statistik penuh + visualisasi poligon sampel untuk GitHub Pages</footer>
+      <footer>Sumber: <b>PERUMAHAN_NEGERI_SELANGOR</b> · V3 chunked vector dataset · GitHub Pages ready</footer>
     </main>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/maplibre-gl@5.6.2/dist/maplibre-gl.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
