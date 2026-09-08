@@ -14,7 +14,7 @@ function start(){
     DATA=window.DASHBOARD_DATA; MANIFEST=window.DASHBOARD_MANIFEST;
     if(!DATA?.rows||!MANIFEST?.pbts) throw new Error('data-inline.js tidak lengkap');
     populateFilters(); initCharts(); bindUI(); initMap(); update();
-  }catch(e){console.error(e);showError('Dashboard gagal dimulakan. Pastikan data-inline.js dan app.js berada di root repository.');}
+  }catch(e){console.error(e);showError('Dashboard gagal dimulakan. Pastikan data-inline.js, app.js dan data-pack ZIP berada di root repository.');}
   finally{$('loadingScreen')?.classList.add('hidden')}
 }
 function showError(msg){$('errorBanner').textContent=msg;$('errorBanner').classList.remove('hidden')}
@@ -31,11 +31,40 @@ function esc(v){return String(v).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;',
 function showPopup(f,lngLat){const p=f.properties||{};const d=DATA.names.districts[p.district]||p.district||'-',pb=DATA.names.pbts[p.pbt]||p.pbt||'-';new maplibregl.Popup({maxWidth:'330px'}).setLngLat(lngLat).setHTML(`<div class="map-popup"><b>${esc(p.type||'-')}</b><span>${esc(p.subtype||'-')}</span><hr><small>Daerah</small><strong>${esc(d)}</strong><small>PBT</small><strong>${esc(pb)}</strong><small>Keluasan lot</small><strong>${fmtArea(+p.area||0)} ha</strong>${p.lot?`<small>No. lot</small><strong>${esc(p.lot)}</strong>`:''}</div>`).addTo(map)}
 function removeActiveSources(){for(const x of activeSources.slice().reverse()){if(map.getLayer(x.line))map.removeLayer(x.line);if(map.getLayer(x.fill))map.removeLayer(x.fill);if(map.getSource(x.source))map.removeSource(x.source)}activeSources=[]}
 function addChunkSource(key,index,geo){const safe=String(key).replace(/[^a-zA-Z0-9_-]/g,'_');const source=`housing-${safe}-${index}`,fill=`${source}-fill`,line=`${source}-line`;map.addSource(source,{type:'geojson',data:geo});map.addLayer({id:fill,type:'fill',source,paint:{'fill-color':['match',['get','type'],'Perumahan Bukan Strata',COLORS['Perumahan Bukan Strata'],'Perumahan Strata',COLORS['Perumahan Strata'],'Kampung',COLORS.Kampung,'Setinggan',COLORS.Setinggan,'#64748b'],'fill-opacity':['interpolate',['linear'],['zoom'],7,0.42,12,0.62,16,0.74]}});map.addLayer({id:line,type:'line',source,minzoom:12,paint:{'line-color':'#ffffff','line-width':['interpolate',['linear'],['zoom'],12,0.15,17,0.65],'line-opacity':0.75}});map.on('click',fill,e=>{if(e.features?.length)showPopup(e.features[0],e.lngLat)});map.on('mouseenter',fill,()=>map.getCanvas().style.cursor='pointer');map.on('mouseleave',fill,()=>map.getCanvas().style.cursor='');activeSources.push({source,fill,line});applyFilterTo(fill,line);applyVisibility()}
-function loadScript(url,key,index,token){return new Promise((resolve,reject)=>{const cacheKey=`${key}:${index}`;if(CHUNK_CACHE.has(cacheKey))return resolve(CHUNK_CACHE.get(cacheKey));const s=document.createElement('script');s.src=url;s.async=true;s.onload=()=>{s.remove();if(token!==requestToken)return resolve(null);const data=CHUNK_CACHE.get(cacheKey);data?resolve(data):reject(new Error(`Chunk tidak mendaftar: ${url}`))};s.onerror=()=>{s.remove();reject(new Error(`Fail tidak ditemui: ${url}`))};document.head.appendChild(s)})}
+const PACK_CACHE=new Map();
+async function getPack(packName){
+  if(PACK_CACHE.has(packName)) return PACK_CACHE.get(packName);
+  if(typeof JSZip==='undefined') throw new Error('Enjin ZIP gagal dimuatkan. Semak sambungan internet/CDN.');
+  const promise=(async()=>{
+    const r=await fetch('./'+packName,{cache:'force-cache'});
+    if(!r.ok) throw new Error(`Fail data tidak ditemui: ${packName} (HTTP ${r.status})`);
+    const buf=await r.arrayBuffer();
+    return JSZip.loadAsync(buf);
+  })();
+  PACK_CACHE.set(packName,promise);
+  try{return await promise}catch(e){PACK_CACHE.delete(packName);throw e}
+}
+async function loadScript(url,key,index,token){
+  const cacheKey=`${key}:${index}`;
+  if(CHUNK_CACHE.has(cacheKey)) return CHUNK_CACHE.get(cacheKey);
+  const path=String(url).replace(/^\.\//,'');
+  const packName=window.DASHBOARD_PACK_INDEX?.[path];
+  if(!packName) throw new Error(`Indeks data tiada untuk: ${path}`);
+  const zip=await getPack(packName);
+  if(token!==requestToken) return null;
+  const entry=zip.file(path);
+  if(!entry) throw new Error(`Fail ${path} tiada dalam ${packName}`);
+  const code=await entry.async('string');
+  if(token!==requestToken) return null;
+  try{(0,eval)(code)}catch(e){throw new Error(`Data rosak pada ${path}: ${e.message}`)}
+  const data=CHUNK_CACHE.get(cacheKey);
+  if(!data) throw new Error(`Chunk tidak mendaftar: ${path}`);
+  return data;
+}
 async function loadChunkSet(key,meta,token){removeActiveSources();let loaded=0,total=meta.chunks.reduce((s,c)=>s+c.records,0);for(let i=0;i<meta.chunks.length;i++){if(token!==requestToken)return false;const c=meta.chunks[i];$('mapStatus').textContent=`Memuatkan ${meta.name||'overview'}: ${i+1}/${meta.chunks.length} chunk · ${fmt(loaded)}/${fmt(total)} lot`;const geo=await loadScript('./'+c.file,key,i,token);if(!geo||token!==requestToken)return false;addChunkSource(key,i,geo);loaded+=c.records;$('mapProgressBar').style.width=`${Math.max(5,Math.round((i+1)/meta.chunks.length*100))}%`;await new Promise(r=>setTimeout(r,0))}return true}
 async function syncMapMode(){const p=$('pbtFilter').value;if(p)await loadFullPbt(p,false);else await loadOverview(true)}
 async function loadOverview(fit){const token=++requestToken;clearError();setMapLoading(true,'Memuatkan overview…');$('reloadFullBtn').disabled=true;try{const meta={name:'Overview Negeri',chunks:MANIFEST.overview.chunks};const ok=await loadChunkSet('overview',meta,token);if(!ok)return;currentMode='overview';loadedPbt='';$('mapMode').textContent='OVERVIEW NEGERI';$('mapStatus').textContent=`${fmt(MANIFEST.overview_records)} poligon berstrata · pilih satu PBT untuk semua lot`;if(fit)map.fitBounds([[100.75,2.55],[102.05,3.9]],{padding:30,duration:700})}catch(e){console.error(e);showError(`Overview gagal dimuatkan: ${e.message}`)}finally{if(token===requestToken)setMapLoading(false)}}
-async function loadFullPbt(code,force){if(!force&&currentMode==='full'&&loadedPbt===code){applyMapFilter();fitPbt(code);return}const meta=MANIFEST.pbts[code];if(!meta)return;const token=++requestToken;clearError();$('reloadFullBtn').disabled=true;setMapLoading(true,`Memuatkan ${meta.name}…`);try{const ok=await loadChunkSet(code,meta,token);if(!ok)return;currentMode='full';loadedPbt=code;applyMapFilter();fitPbt(code);$('mapMode').textContent='LOT PENUH PBT';$('mapStatus').textContent=`${fmt(meta.records)} / ${fmt(meta.records)} poligon ${meta.name} dimuatkan dalam ${meta.chunks.length} chunk`;$('reloadFullBtn').disabled=false}catch(e){console.error(e);showError(`${meta.name} gagal pada fail chunk. ${e.message}`);$('mapStatus').textContent='Gagal memuatkan chunk — semak bahawa seluruh folder data/chunks telah di-upload.';$('reloadFullBtn').disabled=false}finally{if(token===requestToken)setMapLoading(false)}}
+async function loadFullPbt(code,force){if(!force&&currentMode==='full'&&loadedPbt===code){applyMapFilter();fitPbt(code);return}const meta=MANIFEST.pbts[code];if(!meta)return;const token=++requestToken;clearError();$('reloadFullBtn').disabled=true;setMapLoading(true,`Memuatkan ${meta.name}…`);try{const ok=await loadChunkSet(code,meta,token);if(!ok)return;currentMode='full';loadedPbt=code;applyMapFilter();fitPbt(code);$('mapMode').textContent='LOT PENUH PBT';$('mapStatus').textContent=`${fmt(meta.records)} / ${fmt(meta.records)} poligon ${meta.name} dimuatkan dalam ${meta.chunks.length} chunk`;$('reloadFullBtn').disabled=false}catch(e){console.error(e);showError(`${meta.name} gagal pada fail chunk. ${e.message}`);$('mapStatus').textContent='Gagal memuatkan data — pastikan semua fail data-pack-*.zip berada di root repository.';$('reloadFullBtn').disabled=false}finally{if(token===requestToken)setMapLoading(false)}}
 function applyFilterTo(fill,line){const t=$('typeFilter').value,d=$('districtFilter').value,p=$('pbtFilter').value,parts=[];if(t)parts.push(['==',['get','type'],t]);if(d)parts.push(['==',['get','district'],d]);if(p&&currentMode!=='full')parts.push(['==',['get','pbt'],p]);const f=parts.length===0?null:parts.length===1?parts[0]:['all',...parts];if(map.getLayer(fill))map.setFilter(fill,f);if(map.getLayer(line))map.setFilter(line,f)}
 function applyMapFilter(){for(const x of activeSources)applyFilterTo(x.fill,x.line);applyVisibility()}
 function applyVisibility(){const v=$('polygonToggle').checked?'visible':'none';for(const x of activeSources){if(map.getLayer(x.fill))map.setLayoutProperty(x.fill,'visibility',v);if(map.getLayer(x.line))map.setLayoutProperty(x.line,'visibility',v)}}

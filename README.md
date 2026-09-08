@@ -1,30 +1,19 @@
-# Dashboard Perumahan Negeri Selangor V3.2 FIXED
+# Dashboard Perumahan Negeri Selangor V3.3 FIXED
 
-Versi ini membaiki kegagalan pemuatan poligon penuh PBT.
+Versi ini direka khusus untuk GitHub Pages dan **tidak lagi menggunakan folder `data/chunks/`**.
 
-## Perubahan utama
-- Tiada lagi fail `.geojson.gz` besar.
-- Semua PBT dipecahkan kepada fail JavaScript kecil, maksimum kira-kira 10,000 fitur setiap chunk.
-- Chunk dimuatkan satu demi satu dan menjadi MapLibre source berasingan.
-- Jika satu fail tidak di-upload, mesej ralat memaparkan nama fail chunk yang hilang.
-- Statistik 1,083,443 rekod kekal daripada data penuh.
+## Cara upload
+Upload SEMUA fail berikut terus ke root repository:
 
-## Penting ketika upload ke GitHub
-Upload **semua** fail dan folder, termasuk keseluruhan `data/chunks/`. Jangan hanya upload fail root.
+- `index.html`
+- `styles.css`
+- `app.js`
+- `data-inline.js`
+- `summary.json`
+- `.nojekyll`
+- `data-pack-1.zip`
+- `data-pack-2.zip`
 
-Struktur minimum:
-```
-index.html
-styles.css
-app.js
-data-inline.js
-summary.json
-data/
-  manifest.json
-  summary.json
-  chunks/
-    overview/
-    210301/ ... 210312/
-```
+Fail data pack mengandungi semua chunk poligon. Jangan rename fail data pack.
 
-Selepas commit, tunggu GitHub Pages deploy dan lakukan hard refresh (Ctrl+Shift+R).
+Selepas commit, tunggu GitHub Pages deploy dan lakukan hard refresh (`Ctrl+Shift+R`).
