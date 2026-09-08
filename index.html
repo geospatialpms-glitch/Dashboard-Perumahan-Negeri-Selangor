@@ -18,9 +18,7 @@
   <div class="app-shell">
     <aside class="sidebar">
       <div class="suo-brand">
-        <div class="logo-frame"><img src="assets/suo-logo.jpeg" alt="Selangor Urban Observatory"></div>
-        <div class="suo-mini-title">SELANGOR URBAN<br>OBSERVATORY</div>
-        <div class="suo-tagline"><span>DATA</span><span>WAWASAN</span><span>DAYA TAHAN</span><span>MASA HADAPAN</span></div>
+        <img class="sidebar-logo" src="assets/suo-logo-transparent.png" alt="Selangor Urban Observatory">
       </div>
 
       <nav class="nav">
@@ -33,7 +31,7 @@
       </nav>
 
       <div class="agency-block">
-        <div class="agency-crest">♛</div>
+        <div class="agency-rule"></div>
         <b>PLANMalaysia<br>Selangor</b>
         <span>Perancangan Melangkaui Sempadan</span>
       </div>
@@ -41,28 +39,32 @@
 
     <main class="main">
       <header class="topbar">
+        <img class="hero-skyline" src="assets/suo-skyline.png" alt="" aria-hidden="true">
         <div class="title-wrap">
-          <div class="title-logo"><img src="assets/suo-logo.jpeg" alt="SUO"></div>
-          <div><h1><span>Perumahan</span><strong>Negeri Selangor</strong></h1><p>Analisis spatial & statistik data perumahan GTS 2025</p></div>
+          <img class="title-logo" src="assets/suo-logo-transparent.png" alt="SUO">
+          <div class="title-copy">
+            <h1><span>Perumahan</span><strong>Negeri Selangor</strong></h1>
+            <p>Analisis spatial &amp; statistik data perumahan GTS 2025</p>
+          </div>
         </div>
         <div class="header-right">
           <div class="motto"><span>DATA</span><span>WAWASAN</span><span>DAYA TAHAN</span><span>MASA HADAPAN</span></div>
-          <div class="year-pill">TAHUN DATA<strong>2025</strong></div>
+          <div class="year-pill">TAHUN DATA<strong>2025</strong><i></i></div>
         </div>
       </header>
 
       <section class="filterbar">
-        <label>Daerah<select id="districtFilter"><option value="">Semua Daerah</option></select></label>
-        <label>PBT<select id="pbtFilter"><option value="">Semua PBT</option></select></label>
-        <label>Kategori<select id="typeFilter"><option value="">Semua Kategori</option></select></label>
+        <label><span class="filter-label"><i>●</i> Daerah</span><select id="districtFilter"><option value="">Semua Daerah</option></select></label>
+        <label><span class="filter-label"><i>▥</i> PBT</span><select id="pbtFilter"><option value="">Semua PBT</option></select></label>
+        <label><span class="filter-label"><i>▰</i> Kategori</span><select id="typeFilter"><option value="">Semua Kategori</option></select></label>
         <button id="resetBtn" class="reset-btn"><span>↻</span> Set Semula</button>
       </section>
 
       <section id="overview" class="kpi-grid">
-        <article class="kpi-card"><div class="kpi-icon">▰</div><div><span class="kpi-label">Jumlah Lot / Rekod</span><strong id="kpiRecords">-</strong><small>Rekod perumahan</small></div></article>
-        <article class="kpi-card"><div class="kpi-icon">↗</div><div><span class="kpi-label">Jumlah Keluasan</span><strong id="kpiArea">-</strong><small>Hektar</small></div></article>
-        <article class="kpi-card"><div class="kpi-icon">●</div><div><span class="kpi-label">Daerah Terlibat</span><strong id="kpiDistricts">-</strong><small>Daerah</small></div></article>
-        <article class="kpi-card"><div class="kpi-icon">▥</div><div><span class="kpi-label">PBT Terlibat</span><strong id="kpiPbts">-</strong><small>Pihak Berkuasa Tempatan</small></div></article>
+        <article class="kpi-card kpi-orange"><div class="kpi-icon">▰</div><div><span class="kpi-label">Jumlah Lot / Rekod</span><strong id="kpiRecords">-</strong><small>Rekod perumahan</small></div></article>
+        <article class="kpi-card kpi-red"><div class="kpi-icon">↗</div><div><span class="kpi-label">Jumlah Keluasan</span><strong id="kpiArea">-</strong><small>Hektar</small></div></article>
+        <article class="kpi-card kpi-crimson"><div class="kpi-icon">●</div><div><span class="kpi-label">Daerah Terlibat</span><strong id="kpiDistricts">-</strong><small>Daerah</small></div></article>
+        <article class="kpi-card kpi-yellow"><div class="kpi-icon">▥</div><div><span class="kpi-label">PBT Terlibat</span><strong id="kpiPbts">-</strong><small>Pihak Berkuasa Tempatan</small></div></article>
       </section>
 
       <section class="dashboard-grid" id="map-section">
@@ -89,7 +91,7 @@
             </div>
           </article>
           <article class="panel ranking-compact">
-            <div class="panel-head"><div><h2>Ranking Daerah</h2><p>Jumlah rekod perumahan</p></div><button class="text-action" data-scroll="analysis">Lihat Semua</button></div>
+            <div class="panel-head"><div><h2>Ranking Daerah</h2><p>Jumlah rekod perumahan</p></div><button class="text-action" data-scroll="analysis">Lihat Semua ›</button></div>
             <div class="chart-wrap compact"><canvas id="districtChart"></canvas></div>
           </article>
         </div>
