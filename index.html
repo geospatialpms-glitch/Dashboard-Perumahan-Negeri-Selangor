@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Dashboard Perumahan Negeri Selangor V3.3</title>
-  <meta name="description" content="Dashboard interaktif Perumahan Negeri Selangor GTS 2025 dengan pemuatan poligon penuh mengikut PBT." />
+  <title>Dashboard Perumahan Negeri Selangor | SUO</title>
+  <meta name="description" content="Dashboard interaktif Perumahan Negeri Selangor GTS 2025 beridentiti Selangor Urban Observatory (SUO)." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -12,46 +12,63 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div id="loadingScreen" class="loading-screen"><div class="loader"></div><strong>Memuatkan Dashboard Perumahan Selangor V3.3</strong><span>Menyiapkan statistik dan enjin peta WebGL…</span></div>
+  <div id="loadingScreen" class="loading-screen"><div class="loader"></div><strong>Memuatkan Dashboard SUO</strong><span>Menyiapkan statistik dan enjin peta WebGL…</span></div>
   <div id="errorBanner" class="error-banner hidden"></div>
 
   <div class="app-shell">
     <aside class="sidebar">
-      <div class="brand"><div class="brand-mark">S</div><div><div class="brand-title">Perumahan Selangor</div><div class="brand-sub">GTS 2025 · V3.3</div></div></div>
+      <div class="suo-brand">
+        <div class="logo-frame"><img src="assets/suo-logo.jpeg" alt="Selangor Urban Observatory"></div>
+        <div class="suo-mini-title">SELANGOR URBAN<br>OBSERVATORY</div>
+        <div class="suo-tagline"><span>DATA</span><span>WAWASAN</span><span>DAYA TAHAN</span><span>MASA HADAPAN</span></div>
+      </div>
+
       <nav class="nav">
-        <button class="nav-item active" data-target="overview">⌂ <span>Ringkasan</span></button>
-        <button class="nav-item" data-target="map-section">◉ <span>Peta Lot</span></button>
-        <button class="nav-item" data-target="analysis">▥ <span>Analisis</span></button>
-        <button class="nav-item" data-target="table-section">≡ <span>Jadual</span></button>
+        <button class="nav-item active" data-target="overview"><span class="nav-icon">⌂</span><span>Ringkasan</span></button>
+        <button class="nav-item" data-target="map-section"><span class="nav-icon">◈</span><span>Peta Lot</span></button>
+        <button class="nav-item" data-target="analysis"><span class="nav-icon">▥</span><span>Analisis</span></button>
+        <button class="nav-item" data-target="table-section"><span class="nav-icon">☷</span><span>Jadual</span></button>
+        <a class="nav-item nav-link" href="summary.json" download><span class="nav-icon">⇩</span><span>Muat Turun Data</span></a>
+        <button class="nav-item" data-target="about"><span class="nav-icon">ⓘ</span><span>Tentang</span></button>
       </nav>
-      <div class="engine-card"><span>ENJIN V3.3</span><b>Multi-chunk WebGL</b><small>1,083,443 poligon tersedia</small></div>
-      <div class="sidebar-foot">Dashboard statik GitHub Pages<br><b>Negeri Selangor</b></div>
+
+      <div class="agency-block">
+        <div class="agency-crest">♛</div>
+        <b>PLANMalaysia<br>Selangor</b>
+        <span>Perancangan Melangkaui Sempadan</span>
+      </div>
     </aside>
 
     <main class="main">
       <header class="topbar">
-        <div><h1>Dashboard Perumahan Negeri Selangor</h1><p>Analisis spatial & statistik data perumahan GTS 2025</p></div>
-        <div class="top-pills"><div class="year-pill">TAHUN DATA <strong>2025</strong></div><div class="version-pill">V3.3</div></div>
+        <div class="title-wrap">
+          <div class="title-logo"><img src="assets/suo-logo.jpeg" alt="SUO"></div>
+          <div><h1><span>Perumahan</span><strong>Negeri Selangor</strong></h1><p>Analisis spatial & statistik data perumahan GTS 2025</p></div>
+        </div>
+        <div class="header-right">
+          <div class="motto"><span>DATA</span><span>WAWASAN</span><span>DAYA TAHAN</span><span>MASA HADAPAN</span></div>
+          <div class="year-pill">TAHUN DATA<strong>2025</strong></div>
+        </div>
       </header>
 
       <section class="filterbar">
         <label>Daerah<select id="districtFilter"><option value="">Semua Daerah</option></select></label>
         <label>PBT<select id="pbtFilter"><option value="">Semua PBT</option></select></label>
         <label>Kategori<select id="typeFilter"><option value="">Semua Kategori</option></select></label>
-        <button id="resetBtn" class="reset-btn">Set Semula</button>
+        <button id="resetBtn" class="reset-btn"><span>↻</span> Set Semula</button>
       </section>
 
       <section id="overview" class="kpi-grid">
-        <article class="kpi-card"><span class="kpi-label">Jumlah Lot / Rekod</span><strong id="kpiRecords">-</strong><small>Rekod perumahan</small></article>
-        <article class="kpi-card"><span class="kpi-label">Jumlah Keluasan</span><strong id="kpiArea">-</strong><small>Hektar</small></article>
-        <article class="kpi-card"><span class="kpi-label">Daerah Terlibat</span><strong id="kpiDistricts">-</strong><small>Daerah</small></article>
-        <article class="kpi-card"><span class="kpi-label">PBT Terlibat</span><strong id="kpiPbts">-</strong><small>Pihak Berkuasa Tempatan</small></article>
+        <article class="kpi-card"><div class="kpi-icon">▰</div><div><span class="kpi-label">Jumlah Lot / Rekod</span><strong id="kpiRecords">-</strong><small>Rekod perumahan</small></div></article>
+        <article class="kpi-card"><div class="kpi-icon">↗</div><div><span class="kpi-label">Jumlah Keluasan</span><strong id="kpiArea">-</strong><small>Hektar</small></div></article>
+        <article class="kpi-card"><div class="kpi-icon">●</div><div><span class="kpi-label">Daerah Terlibat</span><strong id="kpiDistricts">-</strong><small>Daerah</small></div></article>
+        <article class="kpi-card"><div class="kpi-icon">▥</div><div><span class="kpi-label">PBT Terlibat</span><strong id="kpiPbts">-</strong><small>Pihak Berkuasa Tempatan</small></div></article>
       </section>
 
-      <section class="two-col map-layout" id="map-section">
+      <section class="dashboard-grid" id="map-section">
         <article class="panel map-panel">
           <div class="panel-head">
-            <div><h2>Peta Lot Perumahan Negeri Selangor</h2><p>WebGL · overview seluruh negeri · poligon penuh dimuatkan mengikut PBT</p></div>
+            <div><h2>Peta Lot Perumahan Negeri Selangor</h2><p>WebGL · poligon perumahan mengikut PBT · pilih daerah/PBT untuk paparan terperinci</p></div>
             <span class="live-dot">● DATA 2025</span>
           </div>
           <div class="map-toolbar">
@@ -60,24 +77,39 @@
           </div>
           <div class="progress-wrap hidden" id="mapProgress"><div id="mapProgressBar"></div></div>
           <div id="map"></div>
-          <div class="map-note"><b>V3.3:</b> Statistik menggunakan semua 1,083,443 rekod. Peta overview menggunakan 18,000 lot berstrata; apabila satu PBT dipilih, lot PBT dimuatkan secara berperingkat dalam chunk kecil. Tiada lagi fail .gz tunggal yang besar. Geometri web dipermudah ±0.75 m untuk prestasi.</div>
+          <div class="map-note"><b>SUO · GTS 2025:</b> Statistik menggunakan keseluruhan 1,083,443 rekod. Paparan overview menggunakan sampel berstrata; apabila satu PBT dipilih, lot penuh PBT dimuatkan secara berperingkat untuk prestasi yang lebih baik.</div>
         </article>
-        <article class="panel">
-          <div class="panel-head"><div><h2>Komposisi Kategori</h2><p>Peratus mengikut jenis perumahan</p></div></div>
-          <div class="chart-wrap"><canvas id="typeChart"></canvas></div><div id="typeLegend" class="legend-list"></div>
-        </article>
+
+        <div class="right-stack">
+          <article class="panel category-panel">
+            <div class="panel-head"><div><h2>Komposisi Kategori</h2><p>Peratus mengikut jenis perumahan</p></div></div>
+            <div class="category-body">
+              <div class="donut-holder"><canvas id="typeChart"></canvas><div class="donut-center"><strong id="donutTotal">-</strong><span>Rekod</span></div></div>
+              <div id="typeLegend" class="legend-list"></div>
+            </div>
+          </article>
+          <article class="panel ranking-compact">
+            <div class="panel-head"><div><h2>Ranking Daerah</h2><p>Jumlah rekod perumahan</p></div><button class="text-action" data-scroll="analysis">Lihat Semua</button></div>
+            <div class="chart-wrap compact"><canvas id="districtChart"></canvas></div>
+          </article>
+        </div>
       </section>
 
       <section class="two-col" id="analysis">
-        <article class="panel"><div class="panel-head"><div><h2>Ranking Daerah</h2><p>Jumlah rekod perumahan</p></div></div><div class="chart-wrap tall"><canvas id="districtChart"></canvas></div></article>
         <article class="panel"><div class="panel-head"><div><h2>Subkategori Utama</h2><p>10 subkategori tertinggi</p></div></div><div class="chart-wrap tall"><canvas id="subtypeChart"></canvas></div></article>
+        <article class="panel insight-card"><div class="panel-head"><div><h2>Ringkasan Analitik</h2><p>Maklumat pantas berdasarkan penapis aktif</p></div></div><div class="insight-body"><div><span>Data keseluruhan</span><b>1,083,443 rekod</b></div><div><span>Skop geografi</span><b>9 daerah · 12 PBT</b></div><div><span>Tahun rujukan</span><b>GTS 2025</b></div><p>Gunakan penapis Daerah, PBT dan Kategori untuk menyelaraskan KPI, carta, jadual dan peta.</p></div></article>
       </section>
 
       <section id="table-section" class="panel table-panel">
         <div class="panel-head"><div><h2>Prestasi Mengikut PBT</h2><p>Jumlah rekod dan keluasan perumahan</p></div><input id="tableSearch" class="search" placeholder="Cari PBT..." /></div>
         <div class="table-scroll"><table><thead><tr><th>PBT</th><th>Kod</th><th>Jumlah Rekod</th><th>Keluasan (ha)</th><th>% Rekod</th><th>Peta</th></tr></thead><tbody id="pbtTable"></tbody></table></div>
       </section>
-      <footer>Sumber: <b>PERUMAHAN_NEGERI_SELANGOR</b> · V3.3 multi-source JS chunk dataset · GitHub Pages ready</footer>
+
+      <section id="about" class="about-panel">
+        <div><b>Selangor Urban Observatory (SUO)</b><span>Dashboard Perumahan Negeri Selangor · GTS 2025</span></div>
+        <div class="about-motto"><span>DATA</span><span>WAWASAN</span><span>DAYA TAHAN</span><span>MASA HADAPAN</span></div>
+      </section>
+      <footer>Sumber: <b>PERUMAHAN_NEGERI_SELANGOR</b> · Selangor Urban Observatory · GitHub Pages</footer>
     </main>
   </div>
   <script src="data-inline.js"></script>

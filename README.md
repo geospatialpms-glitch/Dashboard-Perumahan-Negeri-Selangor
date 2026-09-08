@@ -1,19 +1,20 @@
-# Dashboard Perumahan Negeri Selangor V3.3 FIXED
+# Dashboard Perumahan Negeri Selangor — SUO V4
 
-Versi ini direka khusus untuk GitHub Pages dan **tidak lagi menggunakan folder `data/chunks/`**.
+Versi V4 mengharmonikan identiti visual dashboard dengan logo Selangor Urban Observatory (SUO): tema navy, merah, oren dan kuning; logo SUO pada sidebar dan header; kad KPI berikon; susun atur peta + analisis yang lebih padat; serta paparan responsif.
 
-## Cara upload
-Upload SEMUA fail berikut terus ke root repository:
+## Upload ke GitHub Pages
+Upload semua kandungan folder ini terus ke root repository `Dashboard-Perumahan-Negeri-Selangor`:
 
 - `index.html`
 - `styles.css`
 - `app.js`
 - `data-inline.js`
 - `summary.json`
-- `.nojekyll`
 - `data-pack-1.zip`
 - `data-pack-2.zip`
+- `.nojekyll`
+- folder `assets/` (wajib, mengandungi `suo-logo.jpeg`)
 
-Fail data pack mengandungi semua chunk poligon. Jangan rename fail data pack.
+Jangan extract `data-pack-1.zip` atau `data-pack-2.zip`.
 
-Selepas commit, tunggu GitHub Pages deploy dan lakukan hard refresh (`Ctrl+Shift+R`).
+Selepas commit, tunggu GitHub Pages selesai deploy dan buat hard refresh (`Ctrl + Shift + R`).
