@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Dashboard Perumahan Negeri Selangor V3</title>
+  <title>Dashboard Perumahan Negeri Selangor V3.1</title>
   <meta name="description" content="Dashboard interaktif Perumahan Negeri Selangor GTS 2025 dengan pemuatan poligon penuh mengikut PBT." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,26 +12,26 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div id="loadingScreen" class="loading-screen"><div class="loader"></div><strong>Memuatkan Dashboard Perumahan Selangor V3</strong><span>Menyiapkan statistik dan enjin peta WebGL…</span></div>
+  <div id="loadingScreen" class="loading-screen"><div class="loader"></div><strong>Memuatkan Dashboard Perumahan Selangor V3.1</strong><span>Menyiapkan statistik dan enjin peta WebGL…</span></div>
   <div id="errorBanner" class="error-banner hidden"></div>
 
   <div class="app-shell">
     <aside class="sidebar">
-      <div class="brand"><div class="brand-mark">S</div><div><div class="brand-title">Perumahan Selangor</div><div class="brand-sub">GTS 2025 · V3</div></div></div>
+      <div class="brand"><div class="brand-mark">S</div><div><div class="brand-title">Perumahan Selangor</div><div class="brand-sub">GTS 2025 · V3.1</div></div></div>
       <nav class="nav">
         <button class="nav-item active" data-target="overview">⌂ <span>Ringkasan</span></button>
         <button class="nav-item" data-target="map-section">◉ <span>Peta Lot</span></button>
         <button class="nav-item" data-target="analysis">▥ <span>Analisis</span></button>
         <button class="nav-item" data-target="table-section">≡ <span>Jadual</span></button>
       </nav>
-      <div class="engine-card"><span>ENJIN V3</span><b>Chunked WebGL</b><small>1,083,443 poligon tersedia</small></div>
+      <div class="engine-card"><span>ENJIN V3.1</span><b>Chunked WebGL</b><small>1,083,443 poligon tersedia</small></div>
       <div class="sidebar-foot">Dashboard statik GitHub Pages<br><b>Negeri Selangor</b></div>
     </aside>
 
     <main class="main">
       <header class="topbar">
         <div><h1>Dashboard Perumahan Negeri Selangor</h1><p>Analisis spatial & statistik data perumahan GTS 2025</p></div>
-        <div class="top-pills"><div class="year-pill">TAHUN DATA <strong>2025</strong></div><div class="version-pill">V3</div></div>
+        <div class="top-pills"><div class="year-pill">TAHUN DATA <strong>2025</strong></div><div class="version-pill">V3.1</div></div>
       </header>
 
       <section class="filterbar">
@@ -60,7 +60,7 @@
           </div>
           <div class="progress-wrap hidden" id="mapProgress"><div id="mapProgressBar"></div></div>
           <div id="map"></div>
-          <div class="map-note"><b>V3:</b> Statistik menggunakan semua 1,083,443 rekod. Peta overview menggunakan 18,000 lot berstrata; apabila satu PBT dipilih, fail vektor PBT tersebut dimuatkan dan semua rekod PBT dipaparkan. Geometri web dipermudah ±0.75 m untuk prestasi.</div>
+          <div class="map-note"><b>V3.1:</b> Statistik menggunakan semua 1,083,443 rekod. Peta overview menggunakan 18,000 lot berstrata; apabila satu PBT dipilih, fail vektor PBT tersebut dimuatkan dan semua rekod PBT dipaparkan. Geometri web dipermudah ±0.75 m untuk prestasi.</div>
         </article>
         <article class="panel">
           <div class="panel-head"><div><h2>Komposisi Kategori</h2><p>Peratus mengikut jenis perumahan</p></div></div>
@@ -77,9 +77,10 @@
         <div class="panel-head"><div><h2>Prestasi Mengikut PBT</h2><p>Jumlah rekod dan keluasan perumahan</p></div><input id="tableSearch" class="search" placeholder="Cari PBT..." /></div>
         <div class="table-scroll"><table><thead><tr><th>PBT</th><th>Kod</th><th>Jumlah Rekod</th><th>Keluasan (ha)</th><th>% Rekod</th><th>Peta</th></tr></thead><tbody id="pbtTable"></tbody></table></div>
       </section>
-      <footer>Sumber: <b>PERUMAHAN_NEGERI_SELANGOR</b> · V3 chunked vector dataset · GitHub Pages ready</footer>
+      <footer>Sumber: <b>PERUMAHAN_NEGERI_SELANGOR</b> · V3.1 robust chunked vector dataset · GitHub Pages ready</footer>
     </main>
   </div>
+  <script src="data-inline.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
   <script src="https://unpkg.com/maplibre-gl@5.6.2/dist/maplibre-gl.js"></script>
   <script src="app.js"></script>

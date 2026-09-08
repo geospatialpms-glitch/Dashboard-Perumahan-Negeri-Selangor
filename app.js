@@ -9,10 +9,16 @@ const PALETTE=['#f59e0b','#2563eb','#16a34a','#dc2626','#8b5cf6','#0ea5e9','#647
 start();
 async function start(){
   try{
-    [DATA,MANIFEST]=await Promise.all([fetchJsonFirst(['./summary.json','./data/summary.json']),fetchJsonFirst(['./data/manifest.json'])]);
+    DATA=window.DASHBOARD_DATA || await fetchJsonFirst(['./summary.json','./data/summary.json']);
+    MANIFEST=window.DASHBOARD_MANIFEST || await fetchJsonFirst(['./data/manifest.json']);
+    if(!DATA?.rows || !MANIFEST?.pbts) throw new Error('Data inline tidak lengkap');
     populateFilters(); initCharts(); bindUI(); initMap(); update();
-  }catch(e){console.error(e);showError('Dashboard gagal dimuatkan. Pastikan summary.json, data/manifest.json dan folder data/pbt berada pada struktur yang sama.');}
-  finally{$('loadingScreen')?.classList.add('hidden');}
+  }catch(e){
+    console.error(e);
+    showError('Dashboard gagal dimulakan. Pastikan data-inline.js, app.js dan folder data berada di root repository.');
+  } finally {
+    $('loadingScreen')?.classList.add('hidden');
+  }
 }
 async function fetchJsonFirst(paths){let last;for(const p of paths){try{const r=await fetch(p,{cache:'no-store'});if(!r.ok)throw new Error(`${p}: ${r.status}`);return await r.json()}catch(e){last=e}}throw last}
 function showError(msg){$('errorBanner').textContent=msg;$('errorBanner').classList.remove('hidden')}
@@ -88,10 +94,19 @@ async function loadFullPbt(code,force){
   finally{if(token===requestToken)setMapLoading(false)}
 }
 async function fetchGzipGeoJSON(url){
-  const r=await fetch(url,{cache:'force-cache'});if(!r.ok)throw new Error(`${url}: ${r.status}`);
-  if(!('DecompressionStream' in window))throw new Error('Browser tidak menyokong DecompressionStream');
-  if(!r.body)throw new Error('Response stream tidak tersedia');
-  const ds=new DecompressionStream('gzip');const text=await new Response(r.body.pipeThrough(ds)).text();return JSON.parse(text);
+  const r=await fetch(url,{cache:'force-cache'});
+  if(!r.ok) throw new Error(`${url}: ${r.status}`);
+  const buf=await r.arrayBuffer();
+  const bytes=new Uint8Array(buf);
+  // GitHub Pages biasanya menghantar .gz sebagai fail gzip mentah, tetapi sesetengah host/browser
+  // mungkin sudah menyahmampatkan respons. Kenal pasti magic bytes sebelum decompress.
+  if(bytes.length>=2 && bytes[0]===0x1f && bytes[1]===0x8b){
+    if(!('DecompressionStream' in window)) throw new Error('Browser tidak menyokong penyahmampatan gzip. Gunakan Chrome/Edge/Firefox terkini.');
+    const ds=new DecompressionStream('gzip');
+    const text=await new Response(new Blob([buf]).stream().pipeThrough(ds)).text();
+    return JSON.parse(text);
+  }
+  return JSON.parse(new TextDecoder('utf-8').decode(bytes));
 }
 function setMapData(geo){const s=map.getSource('housing');if(s)s.setData(geo)}
 function applyMapFilter(){if(!map?.getLayer('housing-fill'))return;const t=$('typeFilter').value;const d=$('districtFilter').value;const p=$('pbtFilter').value;const parts=[];if(t)parts.push(['==',['get','type'],t]);if(d)parts.push(['==',['get','district'],d]);if(p&&currentMode!=='full')parts.push(['==',['get','pbt'],p]);const filter=parts.length===0?null:parts.length===1?parts[0]:['all',...parts];map.setFilter('housing-fill',filter);map.setFilter('housing-line',filter);applyVisibility()}
