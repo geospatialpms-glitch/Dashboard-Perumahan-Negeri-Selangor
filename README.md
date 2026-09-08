@@ -1,27 +1,31 @@
 # Dashboard Perumahan Negeri Selangor
 
-Dashboard web statik untuk GitHub Pages berasaskan dataset `GTS2025_PERUMAHAN`.
+Versi dibaiki dan diselaraskan dengan dataset `PERUMAHAN_NEGERI_SELANGOR.shp` (2025).
 
-## Fungsi
-- KPI jumlah rekod, keluasan, daerah dan PBT
-- Penapis Daerah, PBT dan kategori perumahan
-- Peta interaktif berasaskan Leaflet + OpenStreetMap
-- Carta kategori, ranking daerah dan subkategori
-- Jadual ranking PBT dengan carian
-- Responsif untuk desktop dan telefon
+## Data dashboard
 
-## Deploy ke GitHub Pages
-1. Cipta repository baharu di GitHub, contoh `dashboard-perumahan-selangor`.
-2. Upload semua fail dalam folder ini ke root repository.
-3. Buka **Settings → Pages**.
-4. Pada **Build and deployment**, pilih **Deploy from a branch**.
-5. Pilih branch `main` dan folder `/ (root)`, kemudian Save.
-6. Laman akan tersedia di alamat GitHub Pages repository tersebut.
+- 1,083,443 rekod
+- 48,485.0787 hektar
+- 9 daerah
+- 12 PBT
+- 4 kategori utama
+- 20 subkategori
 
-## Struktur
-- `index.html` – halaman utama
-- `styles.css` – reka bentuk dashboard
-- `app.js` – logik filter, carta dan peta
-- `data/summary.json` – data agregat ringan daripada shapefile asal
+## Fail yang perlu berada di root GitHub repository
 
-> Shapefile asal mengandungi lebih 1 juta poligon dan tidak dimasukkan terus supaya GitHub Pages kekal laju.
+```text
+index.html
+styles.css
+app.js
+summary.json
+README.md
+data/summary.json   # salinan fallback
+```
+
+`app.js` akan cuba memuatkan `./summary.json` terlebih dahulu dan menggunakan `./data/summary.json` sebagai fallback. Ini mengelakkan isu dashboard kosong apabila struktur folder GitHub berubah.
+
+## GitHub Pages
+
+Settings → Pages → Deploy from a branch → `main` → `/ (root)` → Save.
+
+Selepas upload/replace fail, tunggu deployment selesai kemudian buat hard refresh (`Ctrl + Shift + R`).

@@ -4,7 +4,23 @@ const fmt=n=>new Intl.NumberFormat('ms-MY').format(Math.round(n));
 const fmtArea=n=>new Intl.NumberFormat('ms-MY',{maximumFractionDigits:1}).format(n);
 const palette=['#f59e0b','#23395d','#4f7cac','#0ea5e9','#10b981','#8b5cf6','#ef4444','#64748b'];
 
-fetch('data/summary.json').then(r=>r.json()).then(d=>{DATA=d;init();});
+loadData();
+
+async function loadData(){
+  const paths=['./summary.json','./data/summary.json'];
+  let lastError;
+  for(const path of paths){
+    try{
+      const r=await fetch(path,{cache:'no-store'});
+      if(!r.ok) throw new Error(`${r.status} ${r.statusText}`);
+      DATA=await r.json();
+      init();
+      return;
+    }catch(err){ lastError=err; }
+  }
+  console.error('Gagal memuatkan data dashboard:',lastError);
+  document.body.insertAdjacentHTML('afterbegin',`<div style="position:fixed;z-index:99999;left:50%;top:16px;transform:translateX(-50%);background:#991b1b;color:#fff;padding:12px 18px;border-radius:10px;font:600 13px Inter,sans-serif;box-shadow:0 8px 30px #0003">Data dashboard gagal dimuatkan. Pastikan <b>summary.json</b> berada di root repository.</div>`);
+}
 
 function init(){
   populateFilters(); initMap(); initCharts(); bindUI(); update();
@@ -15,8 +31,19 @@ function populateFilters(){
   DATA.pbts.slice().sort((a,b)=>a.name.localeCompare(b.name)).forEach(p=>$('pbtFilter').add(new Option(p.name,p.code)));
   Object.keys(DATA.types).sort().forEach(t=>$('typeFilter').add(new Option(t,t)));
 }
+
+function refreshPbtFilter(){
+  const district=$('districtFilter').value;
+  const current=$('pbtFilter').value;
+  const allowed=new Set(DATA.rows.filter(r=>!district||r.district===district).map(r=>r.pbt));
+  $('pbtFilter').innerHTML='<option value="">Semua PBT</option>';
+  DATA.pbts.filter(p=>allowed.has(p.code)).sort((a,b)=>a.name.localeCompare(b.name)).forEach(p=>$('pbtFilter').add(new Option(p.name,p.code)));
+  if(allowed.has(current)) $('pbtFilter').value=current;
+}
+
 function bindUI(){
-  ['districtFilter','pbtFilter','typeFilter'].forEach(id=>$(id).addEventListener('change',update));
+  $('districtFilter').addEventListener('change',()=>{refreshPbtFilter();update();});
+  ['pbtFilter','typeFilter'].forEach(id=>$(id).addEventListener('change',update));
   $('resetBtn').onclick=()=>{['districtFilter','pbtFilter','typeFilter'].forEach(id=>$(id).value='');update();};
   $('tableSearch').addEventListener('input',renderTable);
 }
