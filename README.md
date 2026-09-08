@@ -1,31 +1,19 @@
-# Dashboard Perumahan Negeri Selangor
+# Dashboard Perumahan Negeri Selangor — V2
 
-Versi dibaiki dan diselaraskan dengan dataset `PERUMAHAN_NEGERI_SELANGOR.shp` (2025).
+Dashboard statik untuk GitHub Pages berdasarkan dataset `PERUMAHAN_NEGERI_SELANGOR` (GTS 2025).
 
-## Data dashboard
+## Kandungan
+- Statistik penuh 1,083,443 rekod melalui `summary.json`
+- Penapis Daerah, PBT dan Kategori
+- KPI, carta analisis dan jadual PBT
+- Peta Leaflet dengan 18,000 poligon sampel sebenar yang dipilih secara berstrata daripada 12 PBT
+- Popup maklumat kategori, subkategori, daerah, PBT dan keluasan lot
+- Peta dan semua analisis diselaraskan dengan penapis
 
-- 1,083,443 rekod
-- 48,485.0787 hektar
-- 9 daerah
-- 12 PBT
-- 4 kategori utama
-- 20 subkategori
+## Kenapa peta menggunakan sampel?
+Dataset asal mempunyai lebih 1 juta poligon. Memuatkan semua poligon sebagai GeoJSON pada GitHub Pages akan menyebabkan muatan sangat besar dan browser perlahan. Statistik dashboard tetap menggunakan keseluruhan rekod; hanya visualisasi lot pada peta menggunakan sampel berstrata 18,000 poligon sebenar.
 
-## Fail yang perlu berada di root GitHub repository
+## Deploy GitHub Pages
+Upload semua fail/folder ini ke root repository, kemudian `Settings > Pages > Deploy from a branch > main > /(root)`.
 
-```text
-index.html
-styles.css
-app.js
-summary.json
-README.md
-data/summary.json   # salinan fallback
-```
-
-`app.js` akan cuba memuatkan `./summary.json` terlebih dahulu dan menggunakan `./data/summary.json` sebagai fallback. Ini mengelakkan isu dashboard kosong apabila struktur folder GitHub berubah.
-
-## GitHub Pages
-
-Settings → Pages → Deploy from a branch → `main` → `/ (root)` → Save.
-
-Selepas upload/replace fail, tunggu deployment selesai kemudian buat hard refresh (`Ctrl + Shift + R`).
+Jangan ubah struktur folder `data/` kerana `data/housing_sample.geojson` digunakan oleh peta.

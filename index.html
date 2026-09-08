@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Dashboard Perumahan Negeri Selangor</title>
-  <meta name="description" content="Dashboard interaktif Perumahan Negeri Selangor berasaskan dataset PERUMAHAN_NEGERI_SELANGOR 2025." />
+  <meta name="description" content="Dashboard interaktif Perumahan Negeri Selangor berasaskan dataset 2025." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -12,27 +12,22 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <div id="loadingScreen" class="loading-screen"><div class="loader"></div><strong>Memuatkan Dashboard Perumahan Selangor</strong><span>Data statistik dan poligon peta sedang disediakan…</span></div>
   <div class="app-shell">
     <aside class="sidebar">
-      <div class="brand">
-        <div class="brand-mark">S</div>
-        <div><div class="brand-title">Perumahan Selangor</div><div class="brand-sub">GTS 2025</div></div>
-      </div>
+      <div class="brand"><div class="brand-mark">S</div><div><div class="brand-title">Perumahan Selangor</div><div class="brand-sub">GTS 2025</div></div></div>
       <nav class="nav">
         <button class="nav-item active" data-target="overview">⌂ <span>Ringkasan</span></button>
         <button class="nav-item" data-target="map-section">◉ <span>Peta</span></button>
         <button class="nav-item" data-target="analysis">▥ <span>Analisis</span></button>
         <button class="nav-item" data-target="table-section">≡ <span>Jadual</span></button>
       </nav>
-      <div class="sidebar-foot">Dashboard statik GitHub Pages<br><b>Negeri Selangor</b></div>
+      <div class="sidebar-foot">Dashboard GitHub Pages<br><b>Negeri Selangor</b></div>
     </aside>
 
     <main class="main">
       <header class="topbar">
-        <div>
-          <h1>Dashboard Perumahan Negeri Selangor</h1>
-          <p>Analisis data Perumahan Negeri Selangor berdasarkan dataset 2025</p>
-        </div>
+        <div><h1>Dashboard Perumahan Negeri Selangor</h1><p>Analisis spatial & statistik data perumahan GTS 2025</p></div>
         <div class="year-pill">TAHUN DATA <strong>2025</strong></div>
       </header>
 
@@ -50,35 +45,29 @@
         <article class="kpi-card"><span class="kpi-label">PBT Terlibat</span><strong id="kpiPbts">-</strong><small>Pihak Berkuasa Tempatan</small></article>
       </section>
 
-      <section class="two-col" id="map-section">
+      <section class="two-col map-layout" id="map-section">
         <article class="panel map-panel">
-          <div class="panel-head"><div><h2>Taburan Perumahan Mengikut Daerah</h2><p>Saiz bulatan mewakili jumlah rekod</p></div><span class="live-dot">● DATA 2025</span></div>
+          <div class="panel-head"><div><h2>Peta Perumahan Negeri Selangor</h2><p>Poligon sampel sebenar daripada dataset · klik poligon untuk maklumat</p></div><span class="live-dot">● DATA 2025</span></div>
+          <div class="map-toolbar"><span id="mapStatus">Memuatkan poligon…</span><label><input type="checkbox" id="polygonToggle" checked> Papar poligon</label></div>
           <div id="map"></div>
+          <div class="map-note"><b>Nota prestasi:</b> statistik menggunakan keseluruhan 1,083,443 rekod. Peta memaparkan sampel berstrata 18,000 poligon sebenar supaya GitHub Pages kekal pantas.</div>
         </article>
         <article class="panel">
           <div class="panel-head"><div><h2>Komposisi Kategori</h2><p>Peratus mengikut jenis perumahan</p></div></div>
-          <div class="chart-wrap"><canvas id="typeChart"></canvas></div>
-          <div id="typeLegend" class="legend-list"></div>
+          <div class="chart-wrap"><canvas id="typeChart"></canvas></div><div id="typeLegend" class="legend-list"></div>
         </article>
       </section>
 
       <section class="two-col" id="analysis">
-        <article class="panel">
-          <div class="panel-head"><div><h2>Ranking Daerah</h2><p>Jumlah rekod perumahan</p></div></div>
-          <div class="chart-wrap tall"><canvas id="districtChart"></canvas></div>
-        </article>
-        <article class="panel">
-          <div class="panel-head"><div><h2>Subkategori Utama</h2><p>10 subkategori tertinggi</p></div></div>
-          <div class="chart-wrap tall"><canvas id="subtypeChart"></canvas></div>
-        </article>
+        <article class="panel"><div class="panel-head"><div><h2>Ranking Daerah</h2><p>Jumlah rekod perumahan</p></div></div><div class="chart-wrap tall"><canvas id="districtChart"></canvas></div></article>
+        <article class="panel"><div class="panel-head"><div><h2>Subkategori Utama</h2><p>10 subkategori tertinggi</p></div></div><div class="chart-wrap tall"><canvas id="subtypeChart"></canvas></div></article>
       </section>
 
       <section id="table-section" class="panel table-panel">
         <div class="panel-head"><div><h2>Prestasi Mengikut PBT</h2><p>Jumlah rekod dan keluasan perumahan</p></div><input id="tableSearch" class="search" placeholder="Cari PBT..." /></div>
         <div class="table-scroll"><table><thead><tr><th>PBT</th><th>Kod</th><th>Jumlah Rekod</th><th>Keluasan (ha)</th><th>% Rekod</th></tr></thead><tbody id="pbtTable"></tbody></table></div>
       </section>
-
-      <footer>Sumber data: <b>PERUMAHAN_NEGERI_SELANGOR</b> · Paparan dibina untuk GitHub Pages</footer>
+      <footer>Sumber data: <b>PERUMAHAN_NEGERI_SELANGOR</b> · Statistik penuh + visualisasi poligon sampel untuk GitHub Pages</footer>
     </main>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
