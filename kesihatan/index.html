@@ -35,7 +35,7 @@
   <select id="filterDistrict" aria-label="Pilih daerah"><option value="">Semua daerah</option></select>
   <select id="filterSector" class="sector-filter" aria-label="Pilih sektor"><option value="">Semua sektor</option></select>
   <button id="resetFilters" type="button">Set Semula</button>
-  <div class="filter-status"><span><b id="resultCount">87</b> kemudahan dipaparkan</span><span class="search-hint">Kedudukan fasiliti menggunakan geometri GDM2000 / Selangor Grid (EPSG:3380), diproyeksikan ke WGS84 untuk Google Satellite.</span></div>
+  <div class="filter-status"><span><b id="resultCount">87</b> kemudahan dipaparkan</span></div>
 </div>
 <div class="legend"><span><i class="dot" style="background:#d62828"></i>Hospital</span><span><i class="dot" style="background:#2878c8"></i>Klinik Kesihatan</span><span><i class="dot" style="background:#9b2cb5"></i>Klinik Ibu & Anak</span><span><i class="dot" style="background:#24a26a"></i>Klinik Desa</span><span><i class="line"></i>Sempadan Daerah</span><span><i class="line pbt"></i>Sempadan PBT</span></div><div id="map" class="map"></div></section>
 <div><section class="card"><h3>Jenis Kemudahan</h3><div class="charts"><div id="jenis" class="chart3d" aria-label="Carta 3D jenis kemudahan"></div></div></section><section class="card"><h3>Sektor</h3><div class="charts"><div id="sektor" class="chart3d" aria-label="Carta 3D sektor"></div></div></section></div>
@@ -77,7 +77,7 @@ async function loadFacilities(){
     fillSelect('filterCategory',facilities.map(f=>f.KATEGORI));fillSelect('filterDistrict',facilities.map(f=>f.DAERAH));fillSelect('filterSector',facilities.map(f=>f.SEKTOR));
     const list=document.getElementById('facilityNames');facilities.slice().sort((a,b)=>a.NAMA.localeCompare(b.NAMA,'ms')).forEach(f=>{const o=document.createElement('option');o.value=f.NAMA;o.label=`${f.KATEGORI} • ${f.DAERAH}`;list.appendChild(o)});
     renderFacilities();
-  }catch(err){console.error('Gagal memuatkan data fasiliti:',err);document.getElementById('resultCount').textContent='0';document.querySelector('.search-hint').textContent='Data fasiliti gagal dimuatkan. Sila muat semula halaman.'}
+  }catch(err){console.error('Gagal memuatkan data fasiliti:',err);document.getElementById('resultCount').textContent='0';const hint=document.querySelector('.search-hint');if(hint)hint.textContent='Data fasiliti gagal dimuatkan. Sila muat semula halaman.'}
 }
 let searchTimer;document.getElementById('searchFacility').addEventListener('input',()=>{clearTimeout(searchTimer);searchTimer=setTimeout(()=>renderFacilities(),120)});document.getElementById('searchFacility').addEventListener('change',()=>renderFacilities({zoom:true}));['filterCategory','filterDistrict','filterSector'].forEach(id=>document.getElementById(id).addEventListener('change',()=>renderFacilities({zoom:true})));document.getElementById('resetFilters').addEventListener('click',()=>{document.getElementById('searchFacility').value='';document.getElementById('filterCategory').value='';document.getElementById('filterDistrict').value='';document.getElementById('filterSector').value='';renderFacilities();if(window.B){const all=L.featureGroup([daerahLayer,pbtLayer]);try{m.fitBounds(all.getBounds(),{padding:[15,15]})}catch(e){}}});
 loadFacilities();
