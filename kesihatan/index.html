@@ -38,11 +38,11 @@
 <script src="boundaries.js"></script>
 <script>
 const m=L.map('map',{zoomControl:true}).setView([3.18,101.48],9);
-const osm=L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap',maxZoom:19}).addTo(m);
+const googleSatellite=L.tileLayer('https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{subdomains:['mt0','mt1','mt2','mt3'],attribution:'© Google',maxZoom:20}).addTo(m);
 function decodePolyline(s){let i=0,lat=0,lng=0,out=[];while(i<s.length){let b,shift=0,res=0;do{b=s.charCodeAt(i++)-63;res|=(b&31)<<shift;shift+=5}while(b>=32);let dlat=(res&1)?~(res>>1):(res>>1);shift=0;res=0;do{b=s.charCodeAt(i++)-63;res|=(b&31)<<shift;shift+=5}while(b>=32);let dlng=(res&1)?~(res>>1):(res>>1);lat+=dlat;lng+=dlng;out.push([lat/1e5,lng/1e5])}return out}
 const daerahLayer=L.layerGroup().addTo(m),pbtLayer=L.layerGroup().addTo(m),facilityLayer=L.layerGroup().addTo(m);
 if(window.B){B.daerah.forEach(([name,rings])=>rings.forEach(r=>L.polygon(decodePolyline(r),{color:'#b91c1c',weight:2.25,fillColor:'#ef4444',fillOpacity:.025,interactive:true}).bindTooltip('<b>Daerah:</b> '+name,{sticky:true}).addTo(daerahLayer)));B.pbt.forEach(([name,rings])=>rings.forEach(r=>L.polygon(decodePolyline(r),{color:'#f59e0b',weight:1.5,dashArray:'6 5',fillColor:'#fbbf24',fillOpacity:.012,interactive:true}).bindTooltip('<b>PBT:</b> '+name,{sticky:true}).addTo(pbtLayer)))}
-L.control.layers({'OpenStreetMap':osm},{'Kemudahan Kesihatan':facilityLayer,'Sempadan Daerah':daerahLayer,'Sempadan PBT':pbtLayer},{collapsed:false,position:'topright'}).addTo(m);
+L.control.layers({'Google Satellite':googleSatellite},{'Kemudahan Kesihatan':facilityLayer,'Sempadan Daerah':daerahLayer,'Sempadan PBT':pbtLayer},{collapsed:false,position:'topright'}).addTo(m);
 if(window.B){const all=L.featureGroup([daerahLayer,pbtLayer]);try{m.fitBounds(all.getBounds(),{padding:[15,15]})}catch(e){}}
 
 const categoryColors={'Hospital':'#d62828','Klinik Kesihatan':'#2878c8','Klinik Ibu dan Anak':'#9b2cb5','Klinik Desa':'#24a26a'};
