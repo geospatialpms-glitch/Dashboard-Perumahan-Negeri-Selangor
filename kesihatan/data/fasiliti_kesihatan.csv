@@ -1,0 +1,88 @@
+FAC_ID,NAMA,KATEGORI,SEKTOR,OPERATOR,DAERAH,LOKALITI,LATITUDE,LONGITUDE,SUMBER,SEMAKAN
+1,Hospital Shah Alam,Hospital,Kerajaan,KKM,Petaling,Shah Alam,3.0738,101.52,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+2,Hospital Sungai Buloh,Hospital,Kerajaan,KKM,Petaling,Sungai Buloh,3.2195,101.5837,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+3,Hospital Sultan Idris Shah Serdang,Hospital,Kerajaan,KKM,Petaling,Serdang,2.9764,101.72,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+4,Hospital Ampang,Hospital,Kerajaan,KKM,Hulu Langat,Ampang,3.1479,101.76,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+5,Hospital Tengku Permaisuri Norashikin,Hospital,Kerajaan,KKM,Hulu Langat,Kajang,2.9932,101.79,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+6,Hospital Cyberjaya,Hospital,Kerajaan,KKM,Sepang,Cyberjaya,2.9213,101.66,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+7,Hospital Tengku Ampuan Rahimah,Hospital,Kerajaan,KKM,Klang,Klang,3.0223,101.44,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+8,Hospital Banting,Hospital,Kerajaan,KKM,Kuala Langat,Banting,2.8123,101.5,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+9,Hospital Tanjung Karang,Hospital,Kerajaan,KKM,Kuala Selangor,Tanjung Karang,3.4244,101.18,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+10,Hospital Kuala Kubu Bharu,Hospital,Kerajaan,KKM,Hulu Selangor,Kuala Kubu Bharu,3.5652,101.66,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+11,Hospital Tengku Ampuan Jemaah,Hospital,Kerajaan,KKM,Sabak Bernam,Sabak Bernam,3.768,100.99,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+12,Hospital Selayang,Hospital,Kerajaan,KKM,Gombak,Selayang,3.242,101.647,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+13,Hospital Orang Asli Gombak,Hospital,Kerajaan,KKM,Gombak,Gombak,3.325,101.75,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+14,Hospital Al-Sultan Abdullah UiTM,Hospital,Kerajaan,UiTM,Kuala Selangor,Puncak Alam,3.227,101.43,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+15,Hospital Sultan Abdul Aziz Shah UPM,Hospital,Kerajaan,UPM,Petaling,Serdang,2.991,101.72,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+16,Sunway Medical Centre,Hospital,Swasta,Swasta,Petaling,Bandar Sunway,3.065,101.61,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+17,Subang Jaya Medical Centre,Hospital,Swasta,Swasta,Petaling,Subang Jaya,3.0795,101.59,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+18,Thomson Hospital Kota Damansara,Hospital,Swasta,Swasta,Petaling,Kota Damansara,3.158,101.58,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+19,Ara Damansara Medical Centre,Hospital,Swasta,Swasta,Petaling,Ara Damansara,3.113,101.58,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+20,Assunta Hospital,Hospital,Swasta,Swasta,Petaling,Petaling Jaya,3.094,101.64,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+21,KMI Kelana Jaya Medical Centre,Hospital,Swasta,Swasta,Petaling,Kelana Jaya,3.105,101.6,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+22,KPJ Damansara Specialist Hospital,Hospital,Swasta,Swasta,Petaling,Damansara Utama,3.133,101.63,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+23,KPJ Damansara Specialist Hospital 2,Hospital,Swasta,Swasta,Petaling,Bukit Lanjan,3.171,101.61,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+24,Columbia Asia Hospital Petaling Jaya,Hospital,Swasta,Swasta,Petaling,Petaling Jaya,3.096,101.63,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+25,Columbia Asia Hospital Puchong,Hospital,Swasta,Swasta,Petaling,Puchong,3.033,101.62,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+26,KPMC Puchong Specialist Centre,Hospital,Swasta,Swasta,Petaling,Puchong,3.024,101.62,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+27,KPJ Selangor Specialist Hospital,Hospital,Swasta,Swasta,Petaling,Shah Alam,3.085,101.53,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+28,Avisena Specialist Hospital,Hospital,Swasta,Swasta,Petaling,Shah Alam,3.077,101.52,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+29,Avisena Women's & Children's Specialist Hospital,Hospital,Swasta,Swasta,Petaling,Shah Alam,3.078,101.52,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+30,SALAM Shah Alam Specialist Hospital,Hospital,Swasta,Swasta,Petaling,Shah Alam,3.07,101.49,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+31,UMRA Hospital,Hospital,Swasta,Swasta,Petaling,Shah Alam,3.072,101.52,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+32,MSU Medical Centre,Hospital,Swasta,Swasta,Petaling,Shah Alam,3.076,101.55,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+33,Columbia Asia Hospital Bukit Rimau,Hospital,Swasta,Swasta,Klang,Bukit Rimau,3.001,101.53,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+34,Bukit Tinggi Medical Centre,Hospital,Swasta,Swasta,Klang,Bandar Bukit Tinggi,3.01,101.44,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+35,Pantai Hospital Klang,Hospital,Swasta,Swasta,Klang,Klang,3.006,101.41,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+36,KPJ Klang Specialist Hospital,Hospital,Swasta,Swasta,Klang,Klang,3.076,101.45,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+37,Sri Kota Specialist Medical Centre,Hospital,Swasta,Swasta,Klang,Klang,3.044,101.45,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+38,Sentosa Specialist Hospital Klang,Hospital,Swasta,Swasta,Klang,Klang,3.046,101.45,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+39,Hospital Wanita Metro Klang,Hospital,Swasta,Swasta,Klang,Klang,3.04,101.45,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+40,KPJ Ampang Puteri Specialist Hospital,Hospital,Swasta,Swasta,Hulu Langat,Ampang,3.16,101.75,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+41,KPJ Kajang Specialist Hospital,Hospital,Swasta,Swasta,Hulu Langat,Kajang,2.999,101.79,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+42,Kajang Plaza Medical Centre,Hospital,Swasta,Swasta,Hulu Langat,Kajang,2.994,101.79,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+43,Sungai Long Specialist Hospital,Hospital,Swasta,Swasta,Hulu Langat,Bandar Sungai Long,3.038,101.79,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+44,Hospital Picaso,Hospital,Swasta,Swasta,Petaling,Petaling Jaya,3.118,101.64,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+45,KPJ Rawang Specialist Hospital,Hospital,Swasta,Swasta,Gombak,Rawang,3.321,101.576,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+46,KPJ Kuala Selangor Specialist Hospital,Hospital,Swasta,Swasta,Kuala Selangor,Kuala Selangor,3.339,101.25,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+47,MAHSA Specialist Hospital,Hospital,Swasta,Swasta,Kuala Langat,Bandar Saujana Putra,2.958,101.58,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+48,Klinik Kesihatan Shah Alam Seksyen 7,Klinik Kesihatan,Kerajaan,KKM,Petaling,Shah Alam,3.0745,101.52,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+49,Klinik Kesihatan Shah Alam Seksyen 19,Klinik Kesihatan,Kerajaan,KKM,Petaling,Shah Alam,3.05,101.53,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+50,Klinik Kesihatan Kelana Jaya,Klinik Kesihatan,Kerajaan,KKM,Petaling,Kelana Jaya,3.105,101.6,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+51,Klinik Kesihatan Taman Medan,Klinik Kesihatan,Kerajaan,KKM,Petaling,Petaling Jaya,3.081,101.64,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+52,Klinik Kesihatan Puchong Batu 14,Klinik Kesihatan,Kerajaan,KKM,Petaling,Puchong,3.017,101.62,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+53,Klinik Kesihatan Sungai Buloh,Klinik Kesihatan,Kerajaan,KKM,Petaling,Sungai Buloh,3.207,101.58,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+54,Klinik Kesihatan Kajang,Klinik Kesihatan,Kerajaan,KKM,Hulu Langat,Kajang,2.996,101.79,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+55,Klinik Kesihatan Bandar Baru Bangi,Klinik Kesihatan,Kerajaan,KKM,Hulu Langat,Bandar Baru Bangi,2.96,101.76,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+56,Klinik Kesihatan Beranang,Klinik Kesihatan,Kerajaan,KKM,Hulu Langat,Beranang,2.873,101.87,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+57,Klinik Kesihatan Semenyih,Klinik Kesihatan,Kerajaan,KKM,Hulu Langat,Semenyih,2.951,101.85,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+58,Klinik Kesihatan Ampang,Klinik Kesihatan,Kerajaan,KKM,Hulu Langat,Ampang,3.149,101.76,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+59,Klinik Kesihatan Pandamaran,Klinik Kesihatan,Kerajaan,KKM,Klang,Pandamaran,3.002,101.42,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+60,Klinik Kesihatan Pelabuhan Klang,Klinik Kesihatan,Kerajaan,KKM,Klang,Pelabuhan Klang,3.0,101.397,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+61,Klinik Kesihatan Kapar,Klinik Kesihatan,Kerajaan,KKM,Klang,Kapar,3.137,101.38,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+62,Klinik Kesihatan Meru,Klinik Kesihatan,Kerajaan,KKM,Klang,Meru,3.141,101.44,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+63,Klinik Kesihatan Bukit Kuda,Klinik Kesihatan,Kerajaan,KKM,Klang,Klang,3.058,101.46,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+64,Klinik Kesihatan Bandar Botanic,Klinik Kesihatan,Kerajaan,KKM,Klang,Bandar Botanic,2.999,101.44,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+66,Klinik Kesihatan Telok Datok,Klinik Kesihatan,Kerajaan,KKM,Kuala Langat,Banting,2.817,101.5,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+67,Klinik Kesihatan Jenjarom,Klinik Kesihatan,Kerajaan,KKM,Kuala Langat,Jenjarom,2.88,101.5,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+68,Klinik Kesihatan Sepang,Klinik Kesihatan,Kerajaan,KKM,Sepang,Sepang,2.691,101.75,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+69,Klinik Kesihatan Dengkil,Klinik Kesihatan,Kerajaan,KKM,Sepang,Dengkil,2.86,101.68,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+70,Klinik Kesihatan Salak,Klinik Kesihatan,Kerajaan,KKM,Sepang,Salak,2.744,101.74,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+71,Klinik Kesihatan Kuala Selangor,Klinik Kesihatan,Kerajaan,KKM,Kuala Selangor,Kuala Selangor,3.341,101.25,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+72,Klinik Kesihatan Tanjung Karang,Klinik Kesihatan,Kerajaan,KKM,Kuala Selangor,Tanjung Karang,3.425,101.18,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+73,Klinik Kesihatan Ijok,Klinik Kesihatan,Kerajaan,KKM,Kuala Selangor,Ijok,3.318,101.397,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+74,Klinik Kesihatan Bestari Jaya,Klinik Kesihatan,Kerajaan,KKM,Kuala Selangor,Bestari Jaya,3.381,101.417,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+75,Klinik Kesihatan Kuala Kubu Bharu,Klinik Kesihatan,Kerajaan,KKM,Hulu Selangor,Kuala Kubu Bharu,3.566,101.66,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+76,Klinik Kesihatan Rawang,Klinik Kesihatan,Kerajaan,KKM,Gombak,Rawang,3.321,101.575,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+77,Klinik Kesihatan Selayang Baru,Klinik Kesihatan,Kerajaan,KKM,Gombak,Selayang,3.253,101.653,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+78,Klinik Kesihatan Kuang,Klinik Kesihatan,Kerajaan,KKM,Gombak,Kuang,3.259,101.555,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+79,Klinik Kesihatan Sabak Bernam,Klinik Kesihatan,Kerajaan,KKM,Sabak Bernam,Sabak Bernam,3.769,100.99,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+80,Klinik Kesihatan Sungai Besar,Klinik Kesihatan,Kerajaan,KKM,Sabak Bernam,Sungai Besar,3.674,100.99,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+81,Klinik Kesihatan Sekinchan,Klinik Kesihatan,Kerajaan,KKM,Sabak Bernam,Sekinchan,3.506,101.1,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+82,Klinik Kesihatan Ibu dan Anak Shah Alam,Klinik Ibu dan Anak,Kerajaan,KKM,Petaling,Shah Alam,3.074,101.52,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+83,Klinik Kesihatan Ibu dan Anak Klang,Klinik Ibu dan Anak,Kerajaan,KKM,Klang,Klang,3.044,101.45,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+84,Klinik Kesihatan Ibu dan Anak Kajang,Klinik Ibu dan Anak,Kerajaan,KKM,Hulu Langat,Kajang,2.995,101.79,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+85,Klinik Kesihatan Ibu dan Anak Ampang,Klinik Ibu dan Anak,Kerajaan,KKM,Hulu Langat,Ampang,3.15,101.76,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+86,Klinik Desa Sungai Sireh,Klinik Desa,Kerajaan,KKM,Kuala Selangor,Sungai Sireh,3.495,101.16,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+87,Klinik Desa Sungai Burong,Klinik Desa,Kerajaan,KKM,Kuala Selangor,Sungai Burong,3.428,101.12,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
+88,Klinik Desa Sungai Panjang,Klinik Desa,Kerajaan,KKM,Sabak Bernam,Sungai Panjang,3.6,101.054,Senarai awam + anggaran lokasi,PERLU_SEMAKAN
