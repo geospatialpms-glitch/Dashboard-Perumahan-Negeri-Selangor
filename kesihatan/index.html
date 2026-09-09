@@ -18,7 +18,7 @@
   <div class="nav on">⌂ &nbsp; Utama</div><div class="nav">● &nbsp; Taburan Fasiliti</div><div class="nav">▥ &nbsp; Analisis Daerah</div><div class="nav">✚ &nbsp; Perkhidmatan</div><div class="nav">◉ &nbsp; Sektor & Operator</div><div class="nav">ⓘ &nbsp; Mengenai</div>
 </aside>
 <main class="main">
-<section class="head"><div class="eyebrow">SELANGOR URBAN OBSERVATORY • GIS KESIHATAN</div><h1>KEMUDAHAN KESIHATAN NEGERI SELANGOR</h1><p>Analisis taburan fasiliti kesihatan mengikut daerah, sektor dan sempadan pentadbiran.</p></section>
+<section class="head"><div class="eyebrow">SELANGOR URBAN OBSERVATORY • GIS KESIHATAN</div><h1>KEMUDAHAN KESIHATAN NEGERI SELANGOR</h1><p>Analisis taburan fasiliti kesihatan mengikut daerah, sektor dan sempadan pentadbiran • Kedudukan berasaskan GDM2000 Cassini Selangor.</p></section>
 <section class="kpis"><div class="k"><small>Jumlah Kemudahan</small><strong>87</strong></div><div class="k"><small>Hospital</small><strong>47</strong></div><div class="k"><small>Klinik Kesihatan</small><strong>33</strong></div><div class="k"><small>Klinik Ibu & Anak</small><strong>4</strong></div><div class="k"><small>Klinik Desa</small><strong>3</strong></div></section>
 <div class="grid">
 <section class="card"><h3>Peta Taburan Kemudahan & Sempadan Pentadbiran</h3>
@@ -28,7 +28,7 @@
   <select id="filterDistrict" aria-label="Pilih daerah"><option value="">Semua daerah</option></select>
   <select id="filterSector" class="sector-filter" aria-label="Pilih sektor"><option value="">Semua sektor</option></select>
   <button id="resetFilters" type="button">Set Semula</button>
-  <div class="filter-status"><span><b id="resultCount">87</b> kemudahan dipaparkan</span><span class="search-hint">Carian meliputi nama, kategori, daerah, lokaliti, sektor dan operator.</span></div>
+  <div class="filter-status"><span><b id="resultCount">87</b> kemudahan dipaparkan</span><span class="search-hint">Kedudukan fasiliti menggunakan geometri GDM2000 / Selangor Grid (EPSG:3380), diproyeksikan ke WGS84 untuk Google Satellite.</span></div>
 </div>
 <div class="legend"><span><i class="dot" style="background:#d62828"></i>Hospital</span><span><i class="dot" style="background:#2878c8"></i>Klinik Kesihatan</span><span><i class="dot" style="background:#9b2cb5"></i>Klinik Ibu & Anak</span><span><i class="dot" style="background:#24a26a"></i>Klinik Desa</span><span><i class="line"></i>Sempadan Daerah</span><span><i class="line pbt"></i>Sempadan PBT</span></div><div id="map" class="map"></div></section>
 <div><section class="card"><h3>Jenis Kemudahan</h3><div class="charts"><canvas id="jenis"></canvas></div></section><section class="card"><h3>Sektor</h3><div class="charts"><canvas id="sektor"></canvas></div></section></div>
@@ -56,7 +56,7 @@ function parseCSV(text){
 }
 function fillSelect(id,values){const el=document.getElementById(id);[...new Set(values.filter(Boolean))].sort((a,b)=>a.localeCompare(b,'ms')).forEach(v=>{const o=document.createElement('option');o.value=v;o.textContent=v;el.appendChild(o)})}
 function normalize(v){return String(v||'').toLocaleLowerCase('ms').trim()}
-function facilityPopup(f){return `<div class="facility-popup"><b>${f.NAMA}</b><div class="meta"><strong>${f.KATEGORI}</strong><br>${f.LOKALITI}, ${f.DAERAH}<br>Sektor: ${f.SEKTOR}<br>Operator: ${f.OPERATOR}</div></div>`}
+function facilityPopup(f){return `<div class="facility-popup"><b>${f.NAMA}</b><div class="meta"><strong>${f.KATEGORI}</strong><br>${f.LOKALITI}, ${f.DAERAH}<br>Sektor: ${f.SEKTOR}<br>Operator: ${f.OPERATOR}<br><br><b>GDM2000 Cassini Selangor</b><br>E: ${f.EASTING_GDM2000 ?? "-"} m<br>N: ${f.NORTHING_GDM2000 ?? "-"} m<br><span style="color:#94a3b8">EPSG:3380 → WGS84 untuk paparan peta</span></div></div>`}
 function renderFacilities({zoom=false}={}){
   const q=normalize(document.getElementById('searchFacility').value),cat=document.getElementById('filterCategory').value,dist=document.getElementById('filterDistrict').value,sector=document.getElementById('filterSector').value;
   const filtered=facilities.filter(f=>{const hay=normalize([f.NAMA,f.KATEGORI,f.DAERAH,f.LOKALITI,f.SEKTOR,f.OPERATOR].join(' '));return(!q||hay.includes(q))&&(!cat||f.KATEGORI===cat)&&(!dist||f.DAERAH===dist)&&(!sector||f.SEKTOR===sector)});
