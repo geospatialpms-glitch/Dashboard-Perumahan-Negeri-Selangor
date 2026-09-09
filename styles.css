@@ -1,253 +1,33 @@
 @import url('https://cdn.jsdelivr.net/gh/geospatialpms-glitch/Dashboard-Perumahan-Negeri-Selangor@2ba1dd660013831218549c316bab12e5fea54b18/styles.css');
 
-/* Rebuilt header — coded directly, no embedded background image */
+/* EXACT HEADER ARTWORK — matches supplied Selangor mockup */
 .topbar{
-  height:150px!important;
-  min-height:150px!important;
-  padding:0 22px!important;
-  border:1px solid #ead7bf!important;
-  border-radius:0 0 18px 18px!important;
-  background:
-    radial-gradient(circle at 57% 36%,rgba(255,214,117,.23) 0 72px,transparent 73px),
-    radial-gradient(circle at 69% 46%,rgba(241,199,122,.16) 0 86px,transparent 87px),
-    linear-gradient(180deg,#fffdf8 0%,#fff8ec 100%)!important;
-  box-shadow:0 7px 18px rgba(132,94,54,.08)!important;
+  width:100%!important;
+  height:auto!important;
+  min-height:0!important;
+  aspect-ratio:2048 / 222!important;
+  padding:0!important;
+  margin:0!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:0 5px 16px rgba(118,88,60,.08)!important;
+  background:#fffaf1 url('./header-selangor.svg') center center / 100% 100% no-repeat!important;
   overflow:hidden!important;
   position:relative!important;
-  display:flex!important;
-  align-items:center!important;
+  display:block!important;
 }
 
-/* red/yellow Selangor ribbons */
-.topbar:before{
-  content:""!important;
-  display:block!important;
-  position:absolute!important;
-  left:-72px!important;
-  bottom:-24px!important;
-  width:330px!important;
-  height:84px!important;
-  background:
-    linear-gradient(31deg,transparent 0 21%,#f4b536 21% 34%,transparent 34% 42%,#d62f43 42% 58%,#a91f32 58% 73%,transparent 73%)!important;
-  transform:skewX(-10deg)!important;
-  z-index:0!important;
-  pointer-events:none!important;
-}
-.topbar:after{
-  content:""!important;
-  display:block!important;
-  position:absolute!important;
-  right:-78px!important;
-  top:-14px!important;
-  width:260px!important;
-  height:100px!important;
-  background:
-    linear-gradient(137deg,transparent 0 34%,#a61f32 34% 48%,#db3045 48% 61%,#f6b837 61% 72%,transparent 72%)!important;
-  z-index:0!important;
-  pointer-events:none!important;
-}
+/* Artwork already contains crest, title, skyline, motto, date and CSV button */
+.topbar:before,.topbar:after{display:none!important;content:none!important}
+.topbar>.title-wrap,.topbar>.hero-skyline,.topbar>.header-right{visibility:hidden!important;opacity:0!important;pointer-events:none!important}
 
-.title-wrap{
-  display:flex!important;
-  align-items:center!important;
-  gap:18px!important;
-  min-width:640px!important;
-  position:relative!important;
-  z-index:4!important;
-}
-.title-logo{
-  display:block!important;
-  width:104px!important;
-  height:104px!important;
-  object-fit:contain!important;
-  filter:drop-shadow(0 5px 8px rgba(121,80,40,.12))!important;
-}
-.title-copy{
-  display:block!important;
-  position:relative!important;
-  padding-top:20px!important;
-}
-.title-copy:before{
-  content:"SELANGOR URBAN OBSERVATORY"!important;
-  position:absolute!important;
-  left:0!important;
-  top:0!important;
-  color:#bd762f!important;
-  font-size:12px!important;
-  font-weight:800!important;
-  letter-spacing:3.6px!important;
-  white-space:nowrap!important;
-}
-.title-copy h1{
-  display:block!important;
-  margin:0!important;
-  line-height:1.05!important;
-  letter-spacing:-.8px!important;
-  white-space:nowrap!important;
-}
-.title-copy h1 span,
-.title-copy h1 strong{
-  display:inline!important;
-  margin:0!important;
-  padding:0!important;
-  background:none!important;
-  color:#263d5a!important;
-  -webkit-text-fill-color:#263d5a!important;
-  font-size:31px!important;
-  font-weight:800!important;
-  line-height:1.05!important;
-}
-.title-copy h1 strong:before{content:" "!important}
-.title-copy p{
-  display:block!important;
-  margin:11px 0 0!important;
-  color:#717983!important;
-  font-size:12px!important;
-  white-space:nowrap!important;
-  word-spacing:5px!important;
-}
-
-/* use existing skyline artwork already embedded in dashboard */
-.hero-skyline{
-  display:block!important;
-  position:absolute!important;
-  z-index:2!important;
-  left:43%!important;
-  right:auto!important;
-  bottom:-7px!important;
-  width:640px!important;
-  height:130px!important;
-  object-fit:contain!important;
-  object-position:center bottom!important;
-  opacity:.62!important;
-  pointer-events:none!important;
-  filter:saturate(.82) sepia(.12) brightness(1.04)!important;
-}
-
-.header-right{
-  display:flex!important;
-  align-items:center!important;
-  gap:14px!important;
-  margin-left:auto!important;
-  position:relative!important;
-  z-index:5!important;
-}
-.motto{
-  display:block!important;
-  width:175px!important;
-  height:82px!important;
-  position:relative!important;
-  font-size:0!important;
-}
-.motto span{display:none!important}
-.motto:before{
-  content:"Selangor\A Maju Bersama"!important;
-  white-space:pre!important;
-  position:absolute!important;
-  inset:7px 0 auto 0!important;
-  color:#bc3440!important;
-  font-family:"Brush Script MT","Segoe Script",cursive!important;
-  font-size:26px!important;
-  font-style:italic!important;
-  font-weight:500!important;
-  line-height:.95!important;
-  text-align:center!important;
-  transform:rotate(-5deg)!important;
-}
-.motto:after{
-  content:""!important;
-  position:absolute!important;
-  right:14px!important;
-  bottom:13px!important;
-  width:104px!important;
-  height:4px!important;
-  border-radius:999px!important;
-  background:#e3a31a!important;
-  transform:rotate(-12deg)!important;
-}
-.year-pill{
-  display:flex!important;
-  align-items:center!important;
-  justify-content:center!important;
-  width:154px!important;
-  min-width:154px!important;
-  height:66px!important;
-  padding:0 12px 0 46px!important;
-  margin:0!important;
-  border:1px solid #eee0cc!important;
-  border-radius:13px!important;
-  background:rgba(255,253,247,.95)!important;
-  box-shadow:0 6px 16px rgba(125,88,45,.07)!important;
-  position:relative!important;
-  color:transparent!important;
-  font-size:0!important;
-  text-align:left!important;
-}
-.year-pill:before{
-  content:"▣"!important;
-  position:absolute!important;
-  left:16px!important;
-  top:19px!important;
-  color:#c83b3f!important;
-  font-size:22px!important;
-  line-height:1!important;
-}
-.year-pill:after{
-  content:"Data Terkini\A Mei 2026"!important;
-  white-space:pre!important;
-  color:#334861!important;
-  font-size:12px!important;
-  font-weight:700!important;
-  line-height:1.28!important;
-}
-.year-pill strong,.year-pill i{display:none!important}
-.header-right:after{
-  content:"⇩  Muat Turun CSV"!important;
-  display:flex!important;
-  align-items:center!important;
-  justify-content:center!important;
-  min-width:184px!important;
-  height:56px!important;
-  padding:0 18px!important;
-  border-radius:12px!important;
-  background:linear-gradient(135deg,#b52739 0%,#cf3142 100%)!important;
-  color:#fff!important;
-  font-size:13px!important;
-  font-weight:800!important;
-  box-shadow:0 7px 16px rgba(177,38,54,.18)!important;
-  white-space:nowrap!important;
-}
-
-@media(max-width:1420px){
-  .topbar{height:138px!important;min-height:138px!important}
-  .title-wrap{min-width:565px!important}.title-logo{width:90px!important;height:90px!important}
-  .title-copy h1 span,.title-copy h1 strong{font-size:27px!important}
-  .hero-skyline{left:41%!important;width:560px!important;height:118px!important}
-  .motto{width:145px!important}.motto:before{font-size:22px!important}
-  .year-pill{width:136px!important;min-width:136px!important;height:58px!important}
-  .header-right:after{min-width:155px!important;height:50px!important;font-size:11px!important}
-}
+/* Keep the banner proportional at every desktop width */
 @media(max-width:1180px){
-  .topbar{height:122px!important;min-height:122px!important;padding:0 16px!important}
-  .title-wrap{min-width:470px!important;gap:12px!important}.title-logo{width:74px!important;height:74px!important}
-  .title-copy:before{font-size:9px!important;letter-spacing:2.5px!important}
-  .title-copy h1 span,.title-copy h1 strong{font-size:22px!important}
-  .title-copy p{font-size:9px!important}
-  .hero-skyline{left:42%!important;width:450px!important;height:102px!important;opacity:.48!important}
-  .motto{display:none!important}.year-pill{width:122px!important;min-width:122px!important;height:52px!important;padding-left:38px!important}
-  .year-pill:after{font-size:10px!important}.year-pill:before{left:12px!important;top:16px!important;font-size:18px!important}
-  .header-right:after{min-width:132px!important;height:44px!important;padding:0 12px!important;font-size:10px!important}
+  .topbar{aspect-ratio:2048 / 222!important;height:auto!important;min-height:0!important}
 }
 @media(max-width:920px){
-  .topbar{height:108px!important;min-height:108px!important}
-  .title-wrap{min-width:0!important}.title-logo{display:none!important}
-  .title-copy h1{white-space:normal!important}.title-copy h1 span,.title-copy h1 strong{font-size:19px!important}
-  .title-copy p{display:none!important}.hero-skyline{display:none!important}
-  .year-pill{display:none!important}.header-right:after{display:none!important}
+  .topbar{aspect-ratio:2048 / 222!important;height:auto!important;min-height:0!important}
 }
 @media(max-width:720px){
-  .topbar{height:98px!important;min-height:98px!important;padding:0 12px!important}
-  .title-copy{padding-top:15px!important}.title-copy:before{font-size:7px!important;letter-spacing:1.6px!important}
-  .title-copy h1 span,.title-copy h1 strong{font-size:16px!important}
-  .header-right{display:none!important}
+  .topbar{aspect-ratio:2048 / 222!important;height:auto!important;min-height:72px!important;background-size:cover!important;background-position:center!important}
 }
