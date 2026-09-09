@@ -1,33 +1,234 @@
 @import url('https://cdn.jsdelivr.net/gh/geospatialpms-glitch/Dashboard-Perumahan-Negeri-Selangor@2ba1dd660013831218549c316bab12e5fea54b18/styles.css');
 
-/* EXACT HEADER ARTWORK — matches supplied Selangor mockup */
+/* =========================================================
+   SELANGOR PASTEL DASHBOARD — FULL VISUAL REDESIGN
+   Reference: cream / ivory / muted red / gold / slate blue
+   Keeps all data, charts, map and JS functionality intact.
+   ========================================================= */
+:root{
+  --ink:#263d5a;
+  --muted:#7b8491;
+  --bg:#fbf7ef;
+  --line:#eadfce;
+  --cream:#fffaf3;
+  --cream-2:#f8f0e4;
+  --gold:#d99b4a;
+  --gold-2:#e7b86f;
+  --red:#d85c62;
+  --red-dark:#c43b47;
+  --orange:#e98b55;
+  --blue:#6e95ad;
+  --green:#7f9d7b;
+  --lavender:#8da0bf;
+  --shadow:0 8px 22px rgba(90,65,38,.07);
+}
+
+*{box-sizing:border-box}
+body{background:linear-gradient(180deg,#fffdfa 0%,#fbf6ed 100%)!important;color:var(--ink)!important}
+.app-shell{background:transparent!important}
+
+/* ---------- SIDEBAR ---------- */
+.sidebar{
+  width:205px!important;
+  padding:16px 10px 18px!important;
+  background:linear-gradient(180deg,#fffdf9 0%,#faf2e7 72%,#f8efe2 100%)!important;
+  color:var(--ink)!important;
+  border-right:1px solid #eadfce!important;
+  box-shadow:8px 0 24px rgba(100,76,48,.05)!important;
+  overflow:hidden!important;
+}
+.sidebar:before{
+  display:block!important;
+  content:""!important;
+  position:absolute!important;
+  left:-70px!important;
+  right:-55px!important;
+  bottom:72px!important;
+  height:145px!important;
+  background:
+    linear-gradient(155deg,transparent 0 35%,rgba(229,182,111,.10) 35% 50%,transparent 50% 100%),
+    linear-gradient(25deg,transparent 0 46%,rgba(215,82,91,.06) 46% 56%,transparent 56% 100%)!important;
+  transform:none!important;
+  pointer-events:none!important;
+}
+.suo-brand{height:200px!important;padding:0 4px 8px!important;border-bottom:1px solid #eee3d4!important}
+.suo-brand img{width:178px!important;height:176px!important;object-fit:contain!important;filter:none!important}
+.nav{gap:8px!important;margin-top:16px!important}
+.nav-item{
+  height:48px!important;
+  border-radius:10px!important;
+  padding:0 14px!important;
+  color:#6b7887!important;
+  background:transparent!important;
+  font-size:13px!important;
+  font-weight:700!important;
+  box-shadow:none!important;
+}
+.nav-item:hover{background:#f7ead8!important;color:#3d4f63!important}
+.nav-item.active{
+  background:linear-gradient(90deg,#f6dfbd 0%,#f8e6c8 100%)!important;
+  color:#34475b!important;
+  box-shadow:inset 3px 0 #d59c51!important;
+}
+.nav-icon{width:24px!important;font-size:20px!important;color:#758493!important}
+.nav-item:hover .nav-icon,.nav-item.active .nav-icon{color:#c48a43!important}
+.agency-block{
+  left:10px!important;right:10px!important;bottom:18px!important;
+  padding:16px 8px 12px!important;
+  background:rgba(255,252,247,.78)!important;
+  border-top:1px solid #eadfce!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+}
+.agency-mark{display:none!important}
+.agency-block b{color:#2d8053!important;font-size:17px!important;font-weight:700!important}
+.agency-block span{color:#5f6873!important;font-size:8px!important;line-height:1.45!important}
+.agency-block i{background:#d8b16a!important;width:30px!important;height:2px!important}
+
+/* ---------- MAIN LAYOUT ---------- */
+.main{
+  margin-left:205px!important;
+  width:calc(100% - 205px)!important;
+  padding:10px 16px 26px!important;
+  background:transparent!important;
+}
+
+/* ---------- EXACT HEADER ARTWORK ---------- */
 .topbar{
   width:100%!important;
   height:auto!important;
   min-height:0!important;
   aspect-ratio:2048 / 222!important;
   padding:0!important;
-  margin:0!important;
+  margin:0 0 10px!important;
   border:0!important;
-  border-radius:0!important;
+  border-radius:0 0 14px 14px!important;
   box-shadow:0 5px 16px rgba(118,88,60,.08)!important;
   background:#fffaf1 url('./header-selangor.svg') center center / 100% 100% no-repeat!important;
   overflow:hidden!important;
   position:relative!important;
   display:block!important;
 }
-
-/* Artwork already contains crest, title, skyline, motto, date and CSV button */
 .topbar:before,.topbar:after{display:none!important;content:none!important}
 .topbar>.title-wrap,.topbar>.hero-skyline,.topbar>.header-right{visibility:hidden!important;opacity:0!important;pointer-events:none!important}
 
-/* Keep the banner proportional at every desktop width */
+/* ---------- FILTER BAR ---------- */
+.filterbar{
+  grid-template-columns:1fr 1fr 1fr auto!important;
+  gap:12px!important;
+  margin:0 0 12px!important;
+  padding:12px 14px 13px!important;
+  background:#fffdfa!important;
+  border:1px solid #eadfce!important;
+  border-radius:14px!important;
+  box-shadow:var(--shadow)!important;
+}
+.filterbar label{font-size:9px!important;font-weight:800!important;color:#6d7887!important;letter-spacing:.45px!important}
+.filter-label i{color:#c89048!important}
+.filterbar select{
+  height:40px!important;
+  margin-top:6px!important;
+  border:1px solid #e6dac8!important;
+  border-radius:9px!important;
+  background:#fffdfa!important;
+  color:#33485f!important;
+  font-size:11px!important;
+  font-weight:700!important;
+  padding:0 12px!important;
+}
+.filterbar select:focus{border-color:#d7aa70!important;box-shadow:0 0 0 3px rgba(215,170,112,.12)!important}
+.reset-btn{
+  height:40px!important;
+  padding:0 18px!important;
+  border-radius:10px!important;
+  background:linear-gradient(135deg,#cb873b,#e4a75d)!important;
+  color:#fff!important;
+  font-size:11px!important;
+  box-shadow:none!important;
+}
+.reset-btn span{font-size:16px!important}
+
+/* ---------- KPI CARDS ---------- */
+.kpi-grid{grid-template-columns:repeat(4,1fr)!important;gap:10px!important;margin-bottom:10px!important}
+.kpi-card{
+  min-height:104px!important;
+  border:1px solid rgba(220,205,185,.58)!important;
+  border-radius:12px!important;
+  padding:12px 13px!important;
+  gap:11px!important;
+  box-shadow:0 6px 15px rgba(86,64,40,.045)!important;
+}
+.kpi-card:before{display:none!important}
+.kpi-card:nth-child(1){background:linear-gradient(135deg,#fff7f6 0%,#fbe7e5 100%)!important}
+.kpi-card:nth-child(2){background:linear-gradient(135deg,#fffdf3 0%,#fbf2d8 100%)!important}
+.kpi-card:nth-child(3){background:linear-gradient(135deg,#f6fbfd 0%,#e7f1f6 100%)!important}
+.kpi-card:nth-child(4){background:linear-gradient(135deg,#f6fbf5 0%,#e8f2e5 100%)!important}
+.kpi-icon{
+  width:46px!important;height:46px!important;flex:0 0 46px!important;
+  border:0!important;border-radius:12px!important;
+  background:rgba(255,255,255,.58)!important;
+  font-size:23px!important;
+}
+.kpi-card:nth-child(1) .kpi-icon{color:#d65f65!important}
+.kpi-card:nth-child(2) .kpi-icon{color:#d89d42!important}
+.kpi-card:nth-child(3) .kpi-icon{color:#6f93a8!important}
+.kpi-card:nth-child(4) .kpi-icon{color:#779472!important}
+.kpi-label{font-size:8.5px!important;color:#596d82!important;letter-spacing:.15px!important}
+.kpi-card strong{font-size:25px!important;color:#203850!important;margin:4px 0 2px!important}
+.kpi-card small{font-size:8.7px!important;color:#788493!important}
+
+/* ---------- PANELS ---------- */
+.dashboard-grid{grid-template-columns:minmax(0,1.62fr) minmax(330px,.86fr)!important;gap:10px!important;margin-bottom:10px!important}
+.right-stack{gap:10px!important}
+.two-col{gap:10px!important;margin-bottom:10px!important}
+.panel{
+  background:#fffdfa!important;
+  border:1px solid #eadfce!important;
+  border-radius:12px!important;
+  box-shadow:0 6px 18px rgba(95,69,38,.055)!important;
+}
+.panel-head{min-height:52px!important;padding:10px 13px!important;border-bottom:1px solid #eee5d9!important;background:linear-gradient(180deg,#fffdfa,#fffaf5)!important}
+.panel-head h2{font-size:12.5px!important;color:#263d5a!important;margin:0 0 2px!important}
+.panel-head p{font-size:8px!important;color:#8a8490!important}
+.live-dot,.text-action{color:#cc5e4d!important}
+.map-toolbar{height:34px!important;background:#fffaf5!important;border-bottom:1px solid #eee4d7!important}
+.map-btn{background:#f2e1ca!important;color:#4d5c6d!important}
+#map{height:340px!important}
+.map-note{background:#fffaf5!important;border-top:1px solid #eee4d7!important;color:#7e8790!important}
+
+/* Waiting list chart + category chart sizing */
+.chart-wrap{height:220px!important;padding:10px 12px!important}
+.chart-wrap.compact{height:170px!important;padding:7px 12px 9px!important}
+.chart-wrap.tall{height:260px!important}
+.category-body{grid-template-columns:150px 1fr!important;padding:8px 12px 11px!important}
+.donut-holder{height:150px!important}
+.legend-row{font-size:9px!important;color:#69798a!important}
+.legend-row b{color:#41546a!important}
+
+/* ---------- LOWER TABLE / INFO ---------- */
+.table-panel{margin-bottom:10px!important}
+.search{height:31px!important;border:1px solid #e5dacb!important;background:#fffdfa!important;color:#42556a!important}
+th{background:#fff8ef!important;color:#7c7e84!important}
+th,td{border-bottom:1px solid #f0e7db!important}
+.table-map-btn{border:1px solid #e6c99f!important;background:#fff4e5!important;color:#b56a35!important}
+.about-panel{background:linear-gradient(90deg,#fff6ea,#fffdfa)!important;border:1px solid #ead8bd!important}
+footer{color:#92918f!important}
+
+/* ---------- RESPONSIVE ---------- */
 @media(max-width:1180px){
-  .topbar{aspect-ratio:2048 / 222!important;height:auto!important;min-height:0!important}
+  .sidebar{width:190px!important}.main{margin-left:190px!important;width:calc(100% - 190px)!important;padding:8px 10px 22px!important}
+  .suo-brand img{width:162px!important}.kpi-grid{grid-template-columns:repeat(2,1fr)!important}
+  .dashboard-grid{grid-template-columns:1fr!important}.right-stack{grid-template-columns:1fr 1fr!important;grid-template-rows:auto!important}
 }
 @media(max-width:920px){
-  .topbar{aspect-ratio:2048 / 222!important;height:auto!important;min-height:0!important}
+  .filterbar{grid-template-columns:1fr 1fr!important}.reset-btn{grid-column:span 2!important}
+  .right-stack{grid-template-columns:1fr!important}.topbar{aspect-ratio:2048 / 222!important}
 }
 @media(max-width:720px){
-  .topbar{aspect-ratio:2048 / 222!important;height:auto!important;min-height:72px!important;background-size:cover!important;background-position:center!important}
+  .sidebar{position:static!important;width:100%!important;padding:8px!important}.main{margin:0!important;width:100%!important;padding:8px!important}
+  .suo-brand{height:94px!important}.suo-brand img{width:145px!important;height:90px!important}.agency-block{display:none!important}
+  .nav{grid-template-columns:repeat(3,1fr)!important;margin-top:8px!important}.nav-item{height:40px!important;justify-content:center!important;font-size:9px!important;padding:0 6px!important}
+  .topbar{min-height:72px!important;background-size:cover!important;background-position:center!important}
+  .filterbar{grid-template-columns:1fr!important}.reset-btn{grid-column:auto!important}.kpi-grid{grid-template-columns:1fr!important}
+  .dashboard-grid,.two-col{grid-template-columns:1fr!important}.category-body{grid-template-columns:1fr!important}#map{height:360px!important}
 }
